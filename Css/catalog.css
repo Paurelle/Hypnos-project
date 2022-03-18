@@ -1,0 +1,101 @@
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0 15px 0;
+}
+
+.catalog {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.catalog a {
+    text-decoration: none;
+}
+.catalog a:hover {
+    text-decoration: underline;
+}
+
+.content-card {
+    display: grid;
+    grid-template-columns: 110px 3fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 20px; 
+    border-radius: 5px;
+    padding: 16px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+    width: 380px;
+    height: 143px;
+}
+.content-card p {
+    text-align: left;
+    font-size: 12px;
+}
+    
+.img-card { 
+    grid-area: 1 / 1 / 5 / 2; 
+    width: 110px;
+    height: 110px;
+    background: #222831;
+}
+.title-card { 
+    grid-area: 1 / 2 / 2 / 5; 
+    padding-left: 5px;
+}
+.info-card { 
+    grid-area: 2 / 2 / 3 / 5; 
+    padding-left: 5px;
+}
+.description-card { 
+    grid-area: 3 / 2 / 5 / 5;
+    padding-left: 5px;
+}
+
+.title-card a {
+    color: #222831;
+    font-size: 16px;
+}
+
+@media screen and (min-width:992px){
+
+    main {
+        display: flex;
+        justify-content: center;
+    }
+
+    h1 {
+        margin: 100px 0 40px 0;
+    }
+
+    .content-card {
+        width: 565px;
+    }
+    .content-card p {
+        font-size: 16px;
+    }
+
+    .title-card a {
+        color: #222831;
+        font-size: 20px;
+    }
+
+    .title-card { 
+        padding-left: 15px;
+    }
+    .info-card { 
+        padding-left: 15px;
+    }
+    .description-card { 
+        padding-left: 15px;
+    }
+}

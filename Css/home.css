@@ -1,0 +1,50 @@
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 340px;
+    height: 100%;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0 15px 0;
+}
+
+hr {
+    width: 320px;
+    height: 1px;
+    margin: 20px auto 20px auto;
+    background: #EBEBEB;
+    border: none;
+}
+
+p {
+    font-size: 16px;
+    text-align: center;
+}
+
+.link {
+    margin: 20px 0 0 0;
+}
+
+
+@media screen and (min-width:992px){
+
+    .wrapper {
+        width: 533px;
+    }
+
+    h1 {
+        margin: 100px 0 40px 0;
+    }
+
+    hr {
+        width: 533px;
+    }
+  
+}

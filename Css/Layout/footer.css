@@ -1,0 +1,23 @@
+
+  
+footer{
+  position: relative;
+  width: 100%;
+  height: 110px;
+  margin-top: 70px;
+  background: #ffffff;
+  border-top: 3px solid #EBEBEB;
+}
+  
+footer .copyright {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+  
+@media screen and (min-width:992px){
+  footer {
+    margin-top: 100px;
+  }
+}

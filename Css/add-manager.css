@@ -1,0 +1,61 @@
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 340px;
+    height: 100%;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 30px 0 40px 0;
+    text-align: center;
+}
+form{
+    width: 233px;
+}
+label {
+    font-size: 16px;
+    font-weight: 500;
+}
+.input-form {
+    font-size: 16px;
+    width: 233px;
+    height: 36px;
+    border: 1px solid #222831;
+    color: #222831;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 0 10px 0 10px;
+    margin-bottom: 5px;
+}
+
+
+.button-submit {
+    margin-top: 15px;
+    color: white;
+    background: #222831;
+    cursor: pointer;
+}
+
+@media screen and (min-width:992px){
+
+    .wrapper {
+        width: 533px;
+    }
+
+    h1 {
+        margin: 100px 0 40px 0;
+    }
+
+    form, .input-form{
+        width: 275px;
+    }
+}
