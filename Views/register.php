@@ -2,7 +2,8 @@
 <main>
     <div class="wrapper">
         <h1>Créer un compte</h1>
-        <form action="" method="POST">
+        <?php flash('register'); ?>
+        <form action="Controllers/Users.php" method="POST">
             <input type="hidden" name="type" value="register">
 
             <label for="name">Nom</label>

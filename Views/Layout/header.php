@@ -11,13 +11,19 @@
             <div class="hamburger"></div>
             <ul class="menu">
                 <li class="<?= ($page=="home")?"active" : ""; ?>"><a href="index.php">Home</a></li>
-                <?php if (!isset($_SESSION['user'])) : ?>
+                <?php if (!isset($_SESSION['userHypnosId'])) : ?>
                     <li class="<?= ($page=="login")?"active" : ""; ?>"><a href="index.php?page=login">Connexion</a></li>
                     <li class="<?= ($page=="register")?"active" : ""; ?>"><a href="index.php?page=register">S'inscrire</a></li>
-                <?php else : ?>
-                    <li class="<?= ($page=="profile")?"active" : ""; ?>"><a href="index.php?page=profile">Profile</a></li>
+                    
+                <?php elseif ($_SESSION['userHypnosRole'] == 'customer'): ?>
+                    <li class="<?= ($page=="profile")?"active" : ""; ?>"><a href="index.php?page=profil">Profile</a></li>
+                    <li><a href="Controllers/Users.php?q=logout">Logout</a></li>
+
+                <?php elseif ($_SESSION['userHypnosRole'] == 'manager'): ?>
+                    <li class="<?= ($page=="profile")?"active" : ""; ?>"><a href="index.php?page=profil">Profile</a></li>
                     <li><a href="Controllers/Users.php?q=logout">Logout</a></li>
                 <?php endif; ?>
+                
             </ul>
         </div>
     </div>

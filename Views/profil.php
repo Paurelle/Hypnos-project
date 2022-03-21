@@ -3,8 +3,8 @@
     <div class="wrapper">
         <div class="info">
             <h1>Mon profil</h1>
-            <p>nom, prénom</p>
-            <p>mail</p>
+            <p><?=ucfirst($_SESSION['userHypnosName'])?> <?=ucfirst($_SESSION['userHypnosLastname'])?></p>
+            <p><?=$_SESSION['userHypnosEmail']?></p>
             <hr>
         </div>
         <div class="reservation">

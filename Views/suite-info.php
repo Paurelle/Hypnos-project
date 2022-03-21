@@ -1,3 +1,10 @@
+<?php
+    require_once 'Models/User.php';
+
+    $test = new User;
+    $row = $test->hotel();
+    
+?>
 
 <main>
     <div class="wrapper">
@@ -8,7 +15,14 @@
             <p>ville, adresse</p>
         </div>
         <div class="carousel owl-carousel">
+            <?php
+                foreach ($row as $rows) {
+                    echo '<div class="card"><img src="data:image/jpeg;base64,' . base64_encode( $rows->establishment_picture ) . '" /></div>';
+                }
+            ?>
             <div class="card"><img src="Img/test.jpg" alt=""></div>
+            <div class="card"><img src="Img/e.jpg" alt=""></div>
+            <div class="card"><img src="Img/z.jpg" alt=""></div>
             <div class="card"><img src="Img/logo.png" alt=""></div>
         </div>
         <div class="info">
@@ -20,11 +34,16 @@
             <p class="link">Réserver sur <a href="">Hypnos</a> ou sur <a href="">Booking</a></p>
         </div>
     </div>
+
+    
     
 </main>
 
-
-
+<?php
+    foreach ($row as $rows) {
+        echo '<img src="data:image/jpeg;base64,' . base64_encode( $rows->establishment_picture ) . '" />';
+    }
+        
 
 
 

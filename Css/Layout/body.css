@@ -9,11 +9,9 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+    height: calc(100vh - 320px);
 }
 
 main {
-    flex: 1 0 auto;
-    
+  min-height: 100%;
 }

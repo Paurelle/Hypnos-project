@@ -1,8 +1,12 @@
+<?php
+    if (!isset($_SESSION['userE7Id'])) { 
+?>
 
 <main>
     <div class="wrapper">
         <h1>Se connecter</h1>
-        <form action="" method="POST">
+        <?php flash('login'); ?>
+        <form action="Controllers/Users.php" method="POST">
             <input type="hidden" name="type" value="login">
             
             <label for="email">Adresse mail</label>
@@ -22,7 +26,10 @@
     </div>
 </main>
 
-
+<?php 
+    }else{
+        redirect("index.php");
+    }
 
 
 
