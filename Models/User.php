@@ -113,12 +113,6 @@ class User {
         }
     }
 
-    
-
-    
-
-    
-
     public function validateUser($email) {
         $this->db->query('UPDATE users SET user_checked=:validate WHERE user_email=:email');
         $this->db->bind(':validate', 1);

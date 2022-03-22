@@ -1,3 +1,13 @@
+<?php
+
+    if (isset($_SESSION['userHypnosId'])) {
+        if ($_SESSION['userHypnosRole'] == 'admin') {
+
+            require_once 'Models/Contact.php';
+
+            $contactModel = new Contact;
+            $allContacts = $contactModel->selectAllFromContact();
+?>
 
 <main>
     <div class="wrapper">
@@ -9,28 +19,39 @@
 
         <div class="contact">
 
+            <?php
+                foreach ($allContacts as $allContact) {
+            ?>
             <article class="content-card">
                 <ul>
-                    <li>Nom : <span>nom</span></li>
-                    <li>Prénom : <span>Prénom</span></li>
-                    <li>Email : <span>Email@gmail.com</span></li>
+                    <li>Nom : <span><?=$allContact->user_name?></span></li>
+                    <li>Prénom : <span><?=$allContact->lastname?></span></li>
+                    <li>Email : <span><?=$allContact->email?></span></li>
                 </ul>
                 <hr>
                 <ul>
-                    <li>Hôtel : <span>Hôtel</span></li>
-                    <li>Sujet : <span>Sujet</span></li>
+                    <li>Hôtel : <span><?=$allContact->establishment_name?></span></li>
+                    <li>Sujet : <span><?=$allContact->subject?></span></li>
                     <li>Message : </li>
-                    <li><span>Lorem ipsum dolor sit amet. Ut perspiciatis quisquam ut voluptatem Quis praesentium et saepe consequuntur? </span></li>
+                    <li><span><?=$allContact->message?></span></li>
                 </ul>
             </article>
+            <?php
+                }
+            ?>
 
         </div>
     </div>
     
 </main>
 
-
-
+<?php
+        } else {
+            header("location: index.php?page=home");
+        }
+    } else {
+        header("location: index.php?page=home");
+    }
 
 
 
