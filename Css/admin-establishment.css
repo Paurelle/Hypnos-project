@@ -67,6 +67,10 @@ h2 {
     height: 110px;
     background: #222831;
 }
+.img-card img {
+    width: 110px;
+    height: 110px;
+}
 .title-card { 
     grid-area: 1 / 2 / 2 / 4; 
     padding-left: 5px;
@@ -106,46 +110,29 @@ h2 {
     height: 14px;
 }
 
-
-@media screen and (min-width:992px){
-
-    main {
-        display: flex;
-        justify-content: center;
-    }
-
-    h1 {
-        margin: 100px 0 40px 0;
-    }
-
-    .addBtn {
-        width: 210px;
-    }
-
-    .content-card {
-        width: 565px;
-    }
-
-    .title-card a {
-        color: #222831;
-        font-size: 20px;
-    }
-
-    .title-card { 
-        padding-left: 15px;
-    }
-    .info-card { 
-        padding-left: 15px;
-    }
-    .description-card { 
-        padding-left: 15px;
-    }
-
-    .content-card p {
-        font-size: 16px;
-    }
-  
+/* input fil */
+.establishment-picture {
+    margin: 5px 0 0 0;
 }
+.establishment-picture label {
+    background-color: #EFEFEF;
+    border: 1px solid #767676;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+.establishment-picture label:hover {
+    background-color: #d4d4d4;
+}
+.establishment-picture input {
+    display: none;
+}
+.establishment-picture span {
+    font-size: 14px;
+}
+
 
 /* The Modal */
 .modal {
@@ -279,10 +266,44 @@ textarea {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-  
-
 
 @media screen and (min-width:992px){
+
+    main {
+        display: flex;
+        justify-content: center;
+    }
+
+    h1 {
+        margin: 100px 0 40px 0;
+    }
+
+    .addBtn {
+        width: 210px;
+    }
+
+    .content-card {
+        width: 565px;
+    }
+
+    .title-card a {
+        color: #222831;
+        font-size: 20px;
+    }
+
+    .title-card { 
+        padding-left: 15px;
+    }
+    .info-card { 
+        padding-left: 15px;
+    }
+    .description-card { 
+        padding-left: 15px;
+    }
+
+    .content-card p {
+        font-size: 16px;
+    }
 
     .modal-header h3 {
         font-size: 3rem;
@@ -296,7 +317,5 @@ textarea {
     .modal-body .submit-btn{
         width: 275px;
     }
-
+  
 }
-
-

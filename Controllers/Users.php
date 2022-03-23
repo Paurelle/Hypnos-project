@@ -127,37 +127,88 @@
             
         }
 
-        
+        public function addManager(){
 
-        public function validate() {
-            $_POST = filter_input_array(INPUT_POST);
+            if (isset($_SESSION['userHypnosId'])) {
+                if ($_SESSION['userHypnosRole'] == 'admin') {
 
-            $data = [
-                'userEmail' => trim($_POST['email'])
-            ];
+                    // Sanitize POST data
+                    $_POST = filter_input_array(INPUT_POST);
 
-            if ($this->userModel->findUserByEmail($data['userEmail'], null)) {
-                if ($this->userModel->validateUser($data['userEmail'])) {
-                    echo json_encode('validate');
+                    // Init data
+                    $data = [
+                        'name' => trim($_POST['name']),
+                        'lastname' => trim($_POST['lastname']),
+                        'email' => trim($_POST['email']),
+                        'pwd' => trim($_POST['pwd']),
+                        'cPwd' => trim($_POST['cPwd']),
+                    ];
+
+                    // Validate inputs
+                    if (empty($data['name']) || empty($data['lastname']) || 
+                    empty($data['email']) || empty($data['pwd']) || empty($data['cPwd'])) {
+                        flash("registerManager", "Veuillez remplir toutes les entrées");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    if(!preg_match("/^[a-zA-Z]*$/", $data['name'])){
+                        flash("registerManager", "Nom invalide");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    if(!preg_match("/^[a-zA-Z]*$/", $data['lastname'])){
+                        flash("registerManager", "Prénom invalide");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+                        flash("registerManager", "Email invalide");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    //User with the same email or password already exists
+                    if($this->userModel->findUserByEmail($data['email'])){
+                        flash("registerManager", "Email déjà pris");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    if(strlen($data['pwd']) < 6){
+                        flash("registerManager", "Mot de passe invalide (minimum 7 caractères)");
+                        redirect("../index.php?page=admin-manager");
+                    } else if($data['pwd'] !== $data['cPwd']){
+                        flash("registerManager", "Les mots de passe ne correspondent pas");
+                        redirect("../index.php?page=admin-manager");
+                    }
+
+                    //Passed all validation checks.
+                    //Now going to hash password
+                    $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
+                    
+                    //Register User
+                    if($this->userModel->registerManager($data)){
+                        flash("registerManager", "Le manager a bien etait créer", "form-message form-message-green");
+                        redirect("../index.php?page=admin-manager");
+                    }else{
+                        flash("registerManager", "Une erreur est survenue");
+                        redirect("../index.php?page=admin-manager");
+                    }
                 }
-            }
+            }   
         }
 
         public function delete() {
             $_POST = filter_input_array(INPUT_POST);
-
             $data = [
-                'userEmail' => trim($_POST['email'])
+                'email' => trim($_POST['email'])
             ];
 
-            if ($this->userModel->findUserByEmail($data['userEmail'], null)) {
-                if ($this->userModel->deleteUser($data['userEmail'])) {
-                    echo json_encode('delete');
-                }
+            if ($this->userModel->findUserByEmail($data['email'])) {
+                if ($this->userModel->deleteUser($data['email'])) {
+                    echo json_encode('');
+                } 
             }
         }
-        
-        
+
     }
 
     $init = new Users;
@@ -168,11 +219,11 @@
             case 'register':
                 $init->register();
                 break;
+            case 'addManager':
+                $init->addManager();
+                break;
             case 'login':
                 $init->login();
-                break;
-            case 'validate':
-                $init->validate();
                 break;
             case 'delete':
                 $init->delete();

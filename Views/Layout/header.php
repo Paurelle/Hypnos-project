@@ -25,7 +25,9 @@
                     <li><a href="Controllers/Users.php?q=logout">Logout</a></li>
                 
                 <?php elseif ($_SESSION['userHypnosRole'] == 'admin'): ?>
-                    <li class="<?= ($page=="profile")?"active" : ""; ?>"><a href="index.php?page=admin-contact">Contact</a></li>
+                    <li class="<?= ($page=="admin-manager")?"active" : ""; ?>"><a href="index.php?page=admin-manager">Manager</a></li>
+                    <li class="<?= ($page=="admin-establishment")?"active" : ""; ?>"><a href="index.php?page=admin-establishment">Établissement</a></li>
+                    <li class="<?= ($page=="admin-contact")?"active" : ""; ?>"><a href="index.php?page=admin-contact">Contact</a></li>
                     <li><a href="Controllers/Users.php?q=logout">Logout</a></li>
                 <?php endif; ?>
                 

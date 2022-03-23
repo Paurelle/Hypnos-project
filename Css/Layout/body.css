@@ -15,3 +15,24 @@ body {
 main {
   min-height: 100%;
 }
+
+
+.form-message {
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 6px;
+  display: block;
+  margin: 10px 0;
+}
+
+.form-message-red {
+  color: red;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid red ;
+}
+
+.form-message-green {
+  color: green;
+  background: rgba(0, 128, 0, 0.2);
+  border: 1px solid green ;
+}

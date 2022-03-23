@@ -26,7 +26,9 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
     <link rel="stylesheet" href="Css/Layout/body.css">
     <link rel="stylesheet" href="Css/Layout/footer.css">
     <link rel="stylesheet" href="Css/<?=$page?>.css">
-    <?php if ($page == 'suite-info') : ?>
+    <?php if ($page == 'admin-manager') : ?>
+        <link rel="stylesheet" href="Css/Layout/modal.css">
+    <?php elseif ($page == 'suite-info') : ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <?php endif ?>
     <link rel="icon" href="Img/favicon.ico">
@@ -46,12 +48,18 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 
 <!-- Import jQuery -->
 <script src="Js/jquery-3.6.0.min.js"></script>
+
 <?php if ($page == 'admin-establishment') : ?>
-    <script src="Js/modalForm.js"></script>
-    <script src="Js/modifyForm.js"></script>
+    <script src="Js/adminFormEstablishment.js"></script>
+    <script src="Js/inputFile.js"></script>
+
+<?php elseif ($page == 'admin-manager') : ?>
+    <script src="Js/adminFormManager.js"></script>
+
 <?php elseif ($page == 'suite-info') : ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="Js/carousel.js"></script>
+
 <?php endif ?>
 
 </body>
