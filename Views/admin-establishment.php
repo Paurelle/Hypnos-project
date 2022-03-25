@@ -36,7 +36,7 @@
                     <?='<img src="data:image/jpeg;base64,' . base64_encode($allEstablishment->establishment_picture) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=hotel-info&suite=nomSuite">
+                    <a href="index.php?page=establishment-info&establishment=<?=$allEstablishment->name?>">
                        <h3><?=$allEstablishment->name?></h3>
                     </a>
                 </div>
@@ -77,7 +77,7 @@
                         <option></option>
                         <?php 
                             foreach ($allManagers as $allManager) {
-                                if (!$establishmentModel->selectUserFromEstablishmentById($allManager->id_user)) {
+                                if (!$establishmentModel->selectEstablishmentFromUserId($allManager->id_user)) {
                         ?>
                         <option value=<?=$allManager->id_user?>><?=$allManager->name." ".$allManager->lastname?></option>
                         <?php
@@ -97,7 +97,7 @@
                     <textarea name="description" id="description"></textarea>
 
                     <label for="img">Image de l’établissement</label>
-                    <div class="establishment-picture">
+                    <div class="picture">
                         <label for="img">Choisir un fichier</label>
                         <input type="file" name="img" id="img">
                         <span>Aucun fichier choisi</span>

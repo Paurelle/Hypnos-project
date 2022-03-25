@@ -7,12 +7,16 @@ var span = document.getElementsByClassName("close")[0];
 var inputH = document.querySelector("input[name='type']");
 
 $('.addBtn').click(function() {
-  modalValue('addEstablishment', 'Ajouter un établissement', 'Ajouter');
+  modalValue('addSuite', 'Ajouter une suite', 'Ajouter');
+  $('.addSuite').css("display", "block");
+  $('.modifySuite').css("display", "none");
   modal.style.display = "block";
 })
 
 $('.modifyBtn').click(function() {
-  modalValue('modifyEstablishment', 'Modifier l\'établissement', 'Modifier');
+  modalValue('modifySuite', 'Modifier la suite', 'Modifier');
+  $('.addSuite').css("display", "none");
+  $('.modifySuite').css("display", "block");
   modal.style.display = "block";
   var id_establishment = $(this).parents('.content-card').attr('id');
   $.ajax({
@@ -77,6 +81,7 @@ function resetValue() {
   $('#city').val('');
   $('#address').val('');
   $('#description').val('');
+  $('.picture input[type="file"]').siblings('span').text('');
 }
 
 

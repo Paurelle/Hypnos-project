@@ -42,18 +42,19 @@ function resetValue() {
 $('.deleteBtn').click(function() {
   var row = $(this).parents('tr');
   var email = row.children('.col3').text();
-  console.log(email);
     $.ajax({
       type:"POST", 	        
       url:"Controllers/Users.php",  
       dataType: "json",
       data:{type: 'delete', email: email},
-      success:function(){
-        row.remove();
-      },
-      error:function() {
-        alert('Vous devez retirer le manager de sont établissement avant de pouvoir le supprimer');
+      success:function(data){
+        if (data) {
+          row.remove();
+        } else {
+          alert('Vous devez retirer le manager de sont établissement avant de pouvoir le supprimer');
+        }
       }
+      
   })
 
 })

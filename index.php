@@ -28,6 +28,10 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
     <link rel="stylesheet" href="Css/<?=$page?>.css">
     <?php if ($page == 'admin-manager') : ?>
         <link rel="stylesheet" href="Css/Layout/modal.css">
+    <?php elseif ($page == 'admin-establishment') : ?>
+        <link rel="stylesheet" href="Css/Layout/modal.css">
+    <?php elseif ($page == 'manager-suite') : ?>
+        <link rel="stylesheet" href="Css/Layout/modal.css">
     <?php elseif ($page == 'suite-info') : ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <?php endif ?>
@@ -56,6 +60,10 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 <?php elseif ($page == 'admin-manager') : ?>
     <script src="Js/adminFormManager.js"></script>
 
+<?php elseif ($page == 'manager-suite') : ?>
+    <script src="Js/managerFormSuite.js"></script>
+    <script src="Js/inputFile.js"></script>
+    
 <?php elseif ($page == 'suite-info') : ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="Js/carousel.js"></script>

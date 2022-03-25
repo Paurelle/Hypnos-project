@@ -83,6 +83,10 @@ h2 {
     height: 110px;
     background: #222831;
 }
+.img-card img {
+    width: 110px;
+    height: 110px;
+}
 .title-card { 
     grid-area: 1 / 2 / 2 / 4; 
     padding-left: 5px;
@@ -122,6 +126,29 @@ h2 {
     height: 14px;
 }
 
+
+/* input file */
+.picture {
+    margin: 5px 0 5px 0;
+}
+.picture label {
+    background-color: #EFEFEF;
+    border: 1px solid #767676;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+.picture label:hover {
+    background-color: #d4d4d4;
+}
+.picture input {
+    display: none;
+}
+.picture span {
+    font-size: 15px;
+}
 
 @media screen and (min-width:992px){
 

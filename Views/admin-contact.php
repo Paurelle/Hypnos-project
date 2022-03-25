@@ -20,7 +20,8 @@
         <div class="contact">
 
             <?php
-                foreach ($allContacts as $allContact) {
+                if ($allContacts) {
+                    foreach ($allContacts as $allContact) {
             ?>
             <article class="content-card">
                 <ul>
@@ -37,6 +38,7 @@
                 </ul>
             </article>
             <?php
+                    }
                 }
             ?>
 

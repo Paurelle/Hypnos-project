@@ -77,9 +77,9 @@ class User {
         }
     }
 
-    public function deleteUser($email) {
-        $this->db->query('DELETE FROM users WHERE email=:email');
-        $this->db->bind(':email', $email);
+    public function deleteUserById($id) {
+        $this->db->query('DELETE FROM users WHERE id_user=:id');
+        $this->db->bind(':id', $id);
 
         //Execute
         if($this->db->execute()){
@@ -91,16 +91,6 @@ class User {
 
     public function selectAllFromManager() {
         $this->db->query('SELECT * FROM users WHERE role = "manager"');
-
-        $row = $this->db->resultSet();
-        return $row;
-    }
-
-    public function hotel()
-    {
-        $this->db->query(
-            'SELECT * FROM establishments'
-        );
 
         $row = $this->db->resultSet();
         return $row;

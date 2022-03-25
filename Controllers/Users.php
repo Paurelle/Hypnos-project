@@ -1,21 +1,24 @@
 <?php
 
     require_once '../Models/User.php';
+    require_once '../Models/Establishment.php';
     require_once 'Helpers/session_helper.php';
 
     class Users {
 
         private $userModel;
+        private $establishmentModel;
 
         public function __construct(){
             $this->userModel = new User;
+            $this->establishmentModel = new Establishment;
         }
 
         public function login() {
-            //Sanitize POST data
+            // Sanitize POST data
             $_POST = filter_input_array(INPUT_POST);
     
-            //Init data
+            // Init data
             $data=[
                 'email' => trim($_POST['email']),
                 'pwd' => trim($_POST['pwd'])
@@ -27,12 +30,12 @@
                 
             }
     
-            //Check for user/email
+            // Check for email
             if($this->userModel->findUserByEmail($data['email'])){
-                //User Found
+                // User Found
                 $loggedInUser = $this->userModel->login($data['email'], $data['pwd']);
                 if($loggedInUser){
-                    //Create session
+                    // Create session
                     $this->createUserSession($loggedInUser);
                     redirect("../index.php");
                 }else{
@@ -63,7 +66,6 @@
         }
 
         public function register(){
-            // Process form
 
             // Sanitize POST data
             $_POST = filter_input_array(INPUT_POST);
@@ -99,7 +101,6 @@
                 redirect("../index.php?page=register");
             }
 
-            //User with the same email or password already exists
             if($this->userModel->findUserByEmail($data['email'])){
                 flash("register", "Email déjà pris");
                 redirect("../index.php?page=register");
@@ -113,11 +114,11 @@
                 redirect("../index.php?page=register");
             }
 
-            //Passed all validation checks.
-            //Now going to hash password
+            // Passed all validation checks.
+            // Now going to hash password
             $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
             
-            //Register User
+            // Register User
             if($this->userModel->register($data)){
                 redirect("../index.php?page=login");
             }else{
@@ -166,7 +167,6 @@
                         redirect("../index.php?page=admin-manager");
                     }
 
-                    //User with the same email or password already exists
                     if($this->userModel->findUserByEmail($data['email'])){
                         flash("registerManager", "Email déjà pris");
                         redirect("../index.php?page=admin-manager");
@@ -197,15 +197,25 @@
         }
 
         public function delete() {
+            // Sanitize POST data
             $_POST = filter_input_array(INPUT_POST);
+
+            // Init data
             $data = [
                 'email' => trim($_POST['email'])
             ];
 
-            if ($this->userModel->findUserByEmail($data['email'])) {
-                if ($this->userModel->deleteUser($data['email'])) {
-                    echo json_encode('');
-                } 
+            $user = $this->userModel->findUserByEmail($data['email']);
+            if ($user) {
+                // Check if user is in an establishment
+                if (!$this->establishmentModel->selectEstablishmentFromUserId($user->id_user)) {
+                    // Check if user is deleted
+                    if ($this->userModel->deleteUserById($user->id_user)) {
+                        echo json_encode(true);
+                    }
+                } else {
+                    echo json_encode(false);
+                }
             }
         }
 

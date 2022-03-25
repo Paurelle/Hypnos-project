@@ -1,36 +1,42 @@
 <?php
-    require_once 'Models/User.php';
+    
+    // Check if the establishment in the url is valid and not empty
+    if(isset($_GET['suite']) && !empty($_GET['suite'])){
 
-    $test = new User;
-    $row = $test->hotel();
+        require_once 'Controllers/Helpers/session_helper.php';
+        require_once 'Functions/troqueChaine.php';
+
+        require_once 'Models/Suite.php';
+
+        $suiteModel = new Suite;
+        $suiteInfo = $suiteModel->selectSuiteByName($_GET['suite']);
+        $suiteGallery = $suiteModel->selectSuiteGalleryByIdSuite($suiteInfo->id_suite);
+
+        //Check if the establishment was found
+        if ($suiteInfo) {
     
 ?>
+
 
 <main>
     <div class="wrapper">
 
-        <h1>Nom de l’hotel</h1>
+        <h1><?=$suiteInfo->title?></h1>
 
         <div class="info">
-            <p>ville, adresse</p>
+            <p><?=$suiteInfo->price?> €</p>
         </div>
         <div class="carousel owl-carousel">
             <?php
-                foreach ($row as $rows) {
-                    echo '<div class="card"><img src="data:image/jpeg;base64,' . base64_encode( $rows->establishment_picture ) . '" /></div>';
+                foreach ($suiteGallery as $picture) {
+                    echo '<div class="card"><img src="data:image/jpeg;base64,' . base64_encode( $picture->suite_picture ) . '" /></div>';
                 }
             ?>
-            <div class="card"><img src="Img/test.jpg" alt=""></div>
-            <div class="card"><img src="Img/e.jpg" alt=""></div>
-            <div class="card"><img src="Img/z.jpg" alt=""></div>
-            <div class="card"><img src="Img/logo.png" alt=""></div>
+            
         </div>
         <div class="info">
             <hr>
-            <p>
-                Lorem ipsum dolor sit amet. Ut perspiciatis quisquam ut voluptatem Quis in autem saepe exercitationem praesentium et saepe consequuntur? 
-                Lorem ipsum dolor sit amet. Ut perspiciatis quisquam ut voluptatem Quis in autem saepe exercitationem praesentium et saepe consequuntur? 
-            </p>
+            <p><?=$suiteInfo->description?></p>
             <p class="link">Réserver sur <a href="">Hypnos</a> ou sur <a href="">Booking</a></p>
         </div>
     </div>
@@ -40,9 +46,14 @@
 </main>
 
 <?php
-    foreach ($row as $rows) {
-        echo '<img src="data:image/jpeg;base64,' . base64_encode( $rows->establishment_picture ) . '" />';
+        } else {
+            header("location: index.php?page=error");
+        }
+    } else {
+        header("location: index.php?page=error");
     }
+
+    
         
 
 

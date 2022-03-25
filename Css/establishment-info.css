@@ -9,6 +9,12 @@
 .info {
     width: 340px;
 }
+.info p {
+    margin: 5px 0 5px 0;
+}
+.info p:nth-child(2) {
+    text-align: justify;
+}
 
 h1 {
     font-size: 36px;

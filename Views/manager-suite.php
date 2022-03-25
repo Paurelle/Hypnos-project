@@ -1,36 +1,104 @@
+<?php
+
+    if (isset($_SESSION['userHypnosId'])) {
+        if ($_SESSION['userHypnosRole'] == 'manager') {
+
+            require_once 'Functions/troqueChaine.php';
+
+            require_once 'Models/Establishment.php';
+            require_once 'Models/Suite.php';
+
+            $establishmentModel = new Establishment;
+            $establishment = $establishmentModel->selectEstablishmentFromUserId($_SESSION['userHypnosId']);
+            
+            $suiteModel = new Suite;
+            $allSuites = $suiteModel->selectAllFromSuite();
+            $allSuitesGallery = $suiteModel->selectAllFromSuiteGallery();
+?>
 
 <main>
     <div class="wrapper">
         <div class="info">
             <h1>Manager interface</h1>
-            <p>Hôtel, nom de l'hôtel</p>
+            <p>Hôtel, <?=$establishment->name?></p>
             <hr>
         </div>
         
         <h2>Suite</h2>
+        <?php flash('registerSuite'); ?>
         
         <div class="suite">
             <button class="addBtn">Ajouter une suite</button>
-            
-            <div class="content-card">
+        
+            <?php
+                if ($allSuites) {
+                    foreach ($allSuites as $allSuite) {
+            ?>
+            <div id="<?=$allSuite->id_suite?>" class="content-card">
                 <div class="img-card">
-                    <img src="" alt=""> 
+                    <?='<img src="data:image/jpeg;base64,' . base64_encode($allSuite->featured_img) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=suite-info&suite=nomSuite">
-                       <h3>Nom de la suite</h3>
+                    <a href="index.php?page=suite-info&suite=<?=$allSuite->title?>">
+                    <h3><?=$allSuite->title?></h3>
                     </a>
                 </div>
                 <div class="btn-card">
-                    <button><img src="Img/pencil.svg" alt=""></button>
-                    <button><img src="Img/trash.svg" alt=""></button>
+                    <button class="modifyBtn"><img src="Img/pencil.svg" alt=""></button>
+                    <button class="deleteBtn"><img src="Img/trash.svg" alt=""></button>
                 </div>
                 <div class="info-card">
-                    <p>prix</p>
+                    <p><?=$allSuite->price?> €</p>
                 </div>
                 <div class="description-card">
-                    <p>Lorem ipsum dolor sit amet. Ut perspiciatis quisquam ut voluptatem Quis in autem saepe exercitationem praesentium et saepe consequuntur...</p>
+                    <p><?=tronque_chaine($allSuite->description, 135)?></p>
                 </div>
+            </div>
+            <?php
+                    }
+                }
+            ?>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="modalForm" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3></h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="Controllers/Suites.php" enctype="multipart/form-data">
+                    <input type="hidden" name="type" value="">
+                    <input type="hidden" id="id" name="id_establishment" value="<?=$establishment->id_establishment?>">
+
+                    <label for="name">Nom de la suite</label>
+                    <input type="text" id="name" class="input-form" name="name">
+
+                    <label for="price">Prix</label>
+                    <input type="number" id="price" class="input-form" name="price">
+                    
+                    <label for="link">Lien du booking</label>
+                    <input type="text" id="link" class="input-form" name="link">
+                    
+                    <label for="description">Description de la suite</label>
+                    <textarea name="description" id="description"></textarea>
+
+                    <label for="featuredImg">Image à mettre en avant</label>
+                    <div class="picture">
+                        <label for="featuredImg">Choisir un fichier</label>
+                        <input type="file" name="featuredImg" id="featuredImg">
+                        <span>Aucun fichier choisi</span>
+                    </div>
+                    
+                    <div class="addSuite">
+                        <label for="gallery">Image pour la galerie</label>
+                        <input type="file" id="gallery" name="gallery[]" multiple>
+                    </div>
+
+                    <button type="submit" class="submit-btn"><span>Ajouter</span></button>
+                </form>
             </div>
         </div>
     </div>
@@ -38,7 +106,13 @@
 </main>
 
 
-
+<?php
+        } else {
+            header("location: index.php?page=error");
+        }
+    } else {
+        header("location: index.php?page=error");
+    }
 
 
 

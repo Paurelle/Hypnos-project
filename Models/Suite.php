@@ -2,7 +2,7 @@
 
 require_once 'Database.php';
 
-class Establishment {
+class Suite {
     
     private $db;
 
@@ -10,8 +10,8 @@ class Establishment {
         $this->db = new Database;
     }
 
-    public function selectAllFromEstablishment() {
-        $this->db->query('SELECT * FROM establishments');
+    public function selectAllFromSuite() {
+        $this->db->query('SELECT * FROM suites');
 
         $row = $this->db->resultSet();
 
@@ -23,15 +23,44 @@ class Establishment {
         }
     }
 
-    public function registerEstablishment($data) {
-        $this->db->query('INSERT INTO establishments (id_user, name, city, address, description, establishment_picture_name, establishment_picture) 
-        VALUES (:manager, :name, :city, :address, :description, :imgName, :imgData)');
+    public function selectAllFromSuiteGallery() {
+        $this->db->query('SELECT * FROM suite_pictures');
+
+        $row = $this->db->resultSet();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function registerSuite($data) {
+        $this->db->query('INSERT INTO suites (id_establishment, title, price, description, featured_img_name, featured_img, link) 
+        VALUES (:establishment, :title, :price, :description, :imgName, :imgData, :link)');
         //Bind values
-        $this->db->bind(':manager', $data['manager']);
-        $this->db->bind(':name', $data['name']);
-        $this->db->bind(':city', $data['city']);
-        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':establishment', $data['id_establishment']);
+        $this->db->bind(':title', $data['name']);
+        $this->db->bind(':price', $data['price']);
         $this->db->bind(':description', $data['description']);
+        $this->db->bind(':imgName', $data['imgName']);
+        $this->db->bind(':imgData', $data['imgData']);
+        $this->db->bind(':link', $data['link']);
+
+        //Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function registerSuiteGallery($data, $id_suite) {
+        $this->db->query('INSERT INTO suite_pictures (id_suite, suite_picture_name, suite_picture) 
+        VALUES (:suite, :imgName, :imgData)');
+        //Bind values
+        $this->db->bind(':suite', $id_suite);
         $this->db->bind(':imgName', $data['imgName']);
         $this->db->bind(':imgData', $data['imgData']);
 
@@ -80,8 +109,24 @@ class Establishment {
         }
     }
 
-    public function selectNameFromEstablishment() {
-        $this->db->query('SELECT name FROM establishments');
+    public function selectIdSuiteFromLastSuite() {
+        $this->db->query('SELECT id_suite FROM suites ORDER BY id_suite DESC LIMIT 1');
+
+        $row = $this->db->single();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function selectSuiteGalleryByIdSuite($id) {
+        $this->db->query('SELECT * FROM suite_pictures WHERE id_suite = :id');
+
+        $this->db->bind(':id', $id);
 
         $row = $this->db->resultSet();
 
@@ -93,23 +138,8 @@ class Establishment {
         }
     }
 
-    public function selectEstablishmentById($id) {
-        $this->db->query('SELECT * FROM establishments WHERE id_establishment = :id');
-
-        $this->db->bind(':id', $id);
-
-        $row = $this->db->single();
-
-        //Check row
-        if($this->db->rowCount() > 0){
-            return $row;
-        }else{
-            return false;
-        }
-    }
-
-    public function selectEstablishmentByName($name) {
-        $this->db->query('SELECT * FROM establishments WHERE name = :name');
+    public function selectSuiteByName($name) {
+        $this->db->query('SELECT * FROM suites WHERE title = :name');
 
         $this->db->bind(':name', $name);
 
