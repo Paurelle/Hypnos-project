@@ -36,6 +36,21 @@ class Suite {
         }
     }
 
+    public function selectAllFromSuiteByIdEstablishment($id_establishment) {
+        $this->db->query('SELECT * FROM suites WHERE id_establishment = :id_establishment');
+
+        $this->db->bind(':id_establishment', $id_establishment);
+
+        $row = $this->db->resultSet();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
     public function registerSuite($data) {
         $this->db->query('INSERT INTO suites (id_establishment, title, price, description, featured_img_name, featured_img, link) 
         VALUES (:establishment, :title, :price, :description, :imgName, :imgData, :link)');
@@ -72,22 +87,21 @@ class Suite {
         }
     }
 
-    public function modifyEstablishment($data) {
+    public function modifySuite($data) {
         $this->db->query(
-            'UPDATE establishments SET 
-            id_user=:manager, name=:name, city=:city, address=:address, description=:description, establishment_picture_name=:imgName, establishment_picture=:imgData
-            WHERE id_establishment=:id'
+            'UPDATE suites SET 
+            title=:title, price=:price, description=:description, featured_img_name=:imgName, featured_img=:imgData, link=:link
+            WHERE id_suite=:id_suite'
         );
 
         //Bind values
-        $this->db->bind(':id', $data['id']);
-        $this->db->bind(':manager', $data['manager']);
-        $this->db->bind(':name', $data['name']);
-        $this->db->bind(':city', $data['city']);
-        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':id_suite', $data['id_suite']);
+        $this->db->bind(':title', $data['name']);
+        $this->db->bind(':price', $data['price']);
         $this->db->bind(':description', $data['description']);
         $this->db->bind(':imgName', $data['imgName']);
         $this->db->bind(':imgData', $data['imgData']);
+        $this->db->bind(':link', $data['link']);
 
         //Execute
         if($this->db->execute()){
@@ -97,8 +111,20 @@ class Suite {
         }
     }
 
-    public function deleteEstablishment($id) {
-        $this->db->query('DELETE FROM establishments WHERE id_establishment=:id');
+    public function deleteSuiteGallery($id) {
+        $this->db->query('DELETE FROM suite_pictures WHERE id_suite=:id');
+        $this->db->bind(':id', $id);
+
+        //Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteSuite($id) {
+        $this->db->query('DELETE FROM suites WHERE id_suite=:id');
         $this->db->bind(':id', $id);
 
         //Execute
@@ -123,12 +149,27 @@ class Suite {
 
     }
 
-    public function selectSuiteGalleryByIdSuite($id) {
-        $this->db->query('SELECT * FROM suite_pictures WHERE id_suite = :id');
+    public function selectSuiteGalleryByIdSuite($id_suite) {
+        $this->db->query('SELECT * FROM suite_pictures WHERE id_suite = :id_suite');
+
+        $this->db->bind(':id_suite', $id_suite);
+
+        $row = $this->db->resultSet();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function selectSuiteById($id) {
+        $this->db->query('SELECT * FROM suites WHERE id_suite = :id');
 
         $this->db->bind(':id', $id);
 
-        $row = $this->db->resultSet();
+        $row = $this->db->single();
 
         //Check row
         if($this->db->rowCount() > 0){
@@ -142,6 +183,22 @@ class Suite {
         $this->db->query('SELECT * FROM suites WHERE title = :name');
 
         $this->db->bind(':name', $name);
+
+        $row = $this->db->single();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function selectSuiteByNameAndEstablishmentId($name, $id_establishment) {
+        $this->db->query('SELECT * FROM suites WHERE title = :name AND id_establishment = :id_establishment');
+
+        $this->db->bind(':name', $name);
+        $this->db->bind(':id_establishment', $id_establishment);
 
         $row = $this->db->single();
 

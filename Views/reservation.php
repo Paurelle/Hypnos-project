@@ -1,23 +1,43 @@
+<?php
+
+    require_once 'Controllers/Helpers/session_helper.php';
+    require_once 'Functions/troqueChaine.php';
+
+    require_once 'Models/Establishment.php';
+    require_once 'Models/Suite.php';
+
+    $establishmentModel = new Establishment;
+    $allEstablishments = $establishmentModel->selectAllFromEstablishment();
+    $suiteModel = new Suite;
+    $allsuites = $suiteModel->selectAllFromSuite();
+
+
+    
+?>
 
 <main>
     <div class="wrapper">
         <h1>Réserver une suite</h1>
-        <form action="" method="POST">
-            <input type="hidden" name="type" value="reservation">
+        <?=flash("reservation")?>
+        <form method="POST" action="Controllers/Reservations.php">
+            <input type="hidden" name="type" value="addReservation">
 
             <label for="establishment">Choisissez l’établissement</label>
             <select name="establishment" id="establishment" class="input-form">
                 <option></option>
-                <option value="nom">établissement 1</option>
-                <option value="nom">établissement 2</option>
+                <?php
+                    foreach ($allEstablishments as $Establishment) {
+                ?>
+                <option value="<?=$Establishment->id_establishment?>"><?=$Establishment->name?></option>
+                <?php
+                    }
+                ?>
             </select>
             
 
             <label for="suite">Choisissez la suite</label>
             <select name="suite" id="suite" class="input-form">
                 <option></option>
-                <option value="nom">suite 1</option>
-                <option value="nom">suite 2</option>
             </select>
             
             <label for="startDate">Date de debut</label>
@@ -31,7 +51,7 @@
     </div>
 </main>
 
-
+<?php
 
 
 

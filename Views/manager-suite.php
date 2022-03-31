@@ -14,13 +14,14 @@
             $suiteModel = new Suite;
             $allSuites = $suiteModel->selectAllFromSuite();
             $allSuitesGallery = $suiteModel->selectAllFromSuiteGallery();
+            
 ?>
 
 <main>
     <div class="wrapper">
         <div class="info">
             <h1>Manager interface</h1>
-            <p>Hôtel, <?=$establishment->name?></p>
+            <p>Hôtel, <?=ucfirst($establishment->name)?></p>
             <hr>
         </div>
         
@@ -33,14 +34,16 @@
             <?php
                 if ($allSuites) {
                     foreach ($allSuites as $allSuite) {
+                        if ($establishment->id_establishment == $allSuite->id_establishment) {
+                        
             ?>
             <div id="<?=$allSuite->id_suite?>" class="content-card">
                 <div class="img-card">
                     <?='<img src="data:image/jpeg;base64,' . base64_encode($allSuite->featured_img) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=suite-info&suite=<?=$allSuite->title?>">
-                    <h3><?=$allSuite->title?></h3>
+                    <a href="index.php?page=suite-info&suite=<?=$allSuite->id_suite?>">
+                    <h3><?=ucfirst($allSuite->title)?></h3>
                     </a>
                 </div>
                 <div class="btn-card">
@@ -51,10 +54,11 @@
                     <p><?=$allSuite->price?> €</p>
                 </div>
                 <div class="description-card">
-                    <p><?=tronque_chaine($allSuite->description, 135)?></p>
+                    <p><?=ucfirst(tronque_chaine($allSuite->description, 135))?></p>
                 </div>
             </div>
             <?php
+                        }
                     }
                 }
             ?>
@@ -71,7 +75,8 @@
             <div class="modal-body">
                 <form method="POST" action="Controllers/Suites.php" enctype="multipart/form-data">
                     <input type="hidden" name="type" value="">
-                    <input type="hidden" id="id" name="id_establishment" value="<?=$establishment->id_establishment?>">
+                    <input type="hidden" id="id_suite" name="id_suite" value="">
+                    <input type="hidden" id="id_establishment" name="id_establishment" value="<?=$establishment->id_establishment?>">
 
                     <label for="name">Nom de la suite</label>
                     <input type="text" id="name" class="input-form" name="name">
@@ -91,12 +96,14 @@
                         <input type="file" name="featuredImg" id="featuredImg">
                         <span>Aucun fichier choisi</span>
                     </div>
-                    
-                    <div class="addSuite">
-                        <label for="gallery">Image pour la galerie</label>
-                        <input type="file" id="gallery" name="gallery[]" multiple>
-                    </div>
 
+                    <label for="gallery">Image pour la galerie</label>
+                    <div class="gallery">
+                        <label for="gallery">Sélect. fichiers</label>
+                        <input type="file" name="gallery[]" id="gallery" multiple>
+                        <span>Aucun fichier choisi</span>
+                    </div>
+                    
                     <button type="submit" class="submit-btn"><span>Ajouter</span></button>
                 </form>
             </div>

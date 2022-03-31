@@ -9,10 +9,11 @@
         require_once 'Models/Suite.php';
 
         $suiteModel = new Suite;
-        $suiteInfo = $suiteModel->selectSuiteByName($_GET['suite']);
-        $suiteGallery = $suiteModel->selectSuiteGalleryByIdSuite($suiteInfo->id_suite);
+        $suiteInfo = $suiteModel->selectSuiteById($_GET['suite']);
 
-        //Check if the establishment was found
+        $suiteGallery = $suiteModel->selectSuiteGalleryByIdSuite($_GET['suite']);
+
+        //Check if the suite was found
         if ($suiteInfo) {
     
 ?>
@@ -21,7 +22,7 @@
 <main>
     <div class="wrapper">
 
-        <h1><?=$suiteInfo->title?></h1>
+        <h1><?=ucfirst($suiteInfo->title)?></h1>
 
         <div class="info">
             <p><?=$suiteInfo->price?> €</p>
@@ -36,7 +37,7 @@
         </div>
         <div class="info">
             <hr>
-            <p><?=$suiteInfo->description?></p>
+            <p><?=ucfirst($suiteInfo->description)?></p>
             <p class="link">Réserver sur <a href="">Hypnos</a> ou sur <a href="">Booking</a></p>
         </div>
     </div>

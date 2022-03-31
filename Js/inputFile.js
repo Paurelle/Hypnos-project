@@ -8,3 +8,10 @@ $(document).ready(function() {
         $(this).siblings('span').text(name);
     });
 });
+
+$(document).ready(function() {
+    $('.gallery input[type="file"]').change(function(e) {
+        var name = e.target.files;
+        $(this).siblings('span').text(name.length+' fichiers');
+    });
+});

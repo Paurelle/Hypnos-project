@@ -128,10 +128,10 @@ h2 {
 
 
 /* input file */
-.picture {
+.picture, .gallery {
     margin: 5px 0 5px 0;
 }
-.picture label {
+.picture label, .gallery label {
     background-color: #EFEFEF;
     border: 1px solid #767676;
     color: black;
@@ -140,13 +140,13 @@ h2 {
     border-radius: 3px;
     padding: 2px 4px;
 }
-.picture label:hover {
+.picture label:hover, .gallery label:hover{
     background-color: #d4d4d4;
 }
-.picture input {
+.picture input, .gallery input{
     display: none;
 }
-.picture span {
+.picture span, .gallery span{
     font-size: 15px;
 }
 

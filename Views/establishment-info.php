@@ -7,10 +7,12 @@
         require_once 'Functions/troqueChaine.php';
 
         require_once 'Models/Establishment.php';
+        require_once 'Models/Suite.php';
 
         $establishmentModel = new Establishment;
-        $establishmentInfo = $establishmentModel->selectEstablishmentByName($_GET['establishment']);
-
+        $establishmentInfo = $establishmentModel->selectEstablishmentById($_GET['establishment']);
+        $suiteModel = new Suite;
+        $suites = $suiteModel->selectAllFromSuiteByIdEstablishment($_GET['establishment']);
         //Check if the establishment was found
         if ($establishmentInfo) {
 
@@ -33,16 +35,16 @@
         
         <div class="suite">
             <?php
-                //foreach () {
+                foreach ($suites as $suite) {
 
             ?>
             <div class="content-card">
                 <div class="img-card">
-                    <img src="Img/test.jpg" alt="">
+                    <?='<img src="data:image/jpeg;base64,' . base64_encode($suite->featured_img) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=suite-info&suite=nomSuite">
-                       <h3>Nom de la suite</h3>
+                    <a href="index.php?page=suite-info&suite=<?=$suite->id_suite?>">
+                       <h3><?=$suite->title?></h3>
                     </a>
                 </div>
                 <div class="btn-card">
@@ -51,14 +53,14 @@
                     <?php endif; ?>
                 </div>
                 <div class="info-card">
-                    <p>prix</p>
+                    <p><?=$suite->price.' €'?></p>
                 </div>
                 <div class="description-card">
-                    <p>Lorem ipsum dolor sit amet. Ut perspiciatis quisquam ut voluptatem Quis in autem saepe exercitationem praesentium et saepe consequuntur...</p>
+                    <p><?=tronque_chaine($suite->description, 135)?></p>
                 </div>
             </div>
             <?php
-                //}
+                }
             ?>
             
         </div>

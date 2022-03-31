@@ -25,7 +25,7 @@
                     <?='<img src="data:image/jpeg;base64,' . base64_encode($allEstablishment->establishment_picture) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a  href="index.php?page=establishment-info&establishment=<?=$allEstablishment->name?>">
+                    <a  href="index.php?page=establishment-info&establishment=<?=$allEstablishment->id_establishment?>">
                        <h3><?=$allEstablishment->name?></h3>
                     </a>
                 </div>

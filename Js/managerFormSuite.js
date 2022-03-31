@@ -8,43 +8,41 @@ var inputH = document.querySelector("input[name='type']");
 
 $('.addBtn').click(function() {
   modalValue('addSuite', 'Ajouter une suite', 'Ajouter');
-  $('.addSuite').css("display", "block");
   $('.modifySuite').css("display", "none");
   modal.style.display = "block";
 })
 
 $('.modifyBtn').click(function() {
   modalValue('modifySuite', 'Modifier la suite', 'Modifier');
-  $('.addSuite').css("display", "none");
   $('.modifySuite').css("display", "block");
   modal.style.display = "block";
-  var id_establishment = $(this).parents('.content-card').attr('id');
+  var id_suite = $(this).parents('.content-card').attr('id');
   $.ajax({
     type:"POST", 	        
-    url:"Controllers/Establishments.php",  
+    url:"Controllers/Suites.php",  
     dataType: "json",
-    data:{type: 'infoEstablishment', id: id_establishment},
+    data:{type: 'infoSuite', id: id_suite},
     success:function(data){
-      $('#id').val(data['id'])
-      $('#name').val(data['name']);
-      $('#manager').append('<option value="'+data['id_user']+'">'+data['user_name']+'</option>');
-      $('#manager option[value="'+data['id_user']+'"]').prop('selected', true);
-      $('#city').val(data['city']);
-      $('#address').val(data['address']);
+      $('#id_suite').val(data['id_suite']);
+      $('#id_establishment').val(data['id_establishment']);
+      $('#name').val(data['title']);
+      $('#price').val(data['price']);
       $('#description').val(data['description']);
-      $('.establishment-picture span').text(data['img_name']);
+      $('.picture span').text(data['img_name']);
+      $('.gallery span').text(data['img_gallery_name']+' fichiers');
+      $('#link').val(data['link']);
     }
   })
 })
 
 $('.deleteBtn').click(function() {
   var row = $(this).parents('.content-card');
-  var id_establishment = $(this).parents('.content-card').attr('id');
+  var id_suite = $(this).parents('.content-card').attr('id');
   $.ajax({
     type:"POST", 	        
-    url:"Controllers/Establishments.php",  
+    url:"Controllers/Suites.php",  
     dataType: "json",
-    data:{type: 'deleteEstablishment', id: id_establishment},
+    data:{type: 'deleteSuite', id: id_suite},
     success:function(data){
       if (data) {
         row.remove();
@@ -75,13 +73,15 @@ function resetValue() {
   inputH.setAttribute('value','');
   $('.modal-header').children('h3').text('');
   $('form').children('.submit-btn').html('');
-  $('#id').val('')
+  $('#id_suite').val('');
+  $('#id_establishment').val('');
   $('#name').val('');
   $('#manager option:nth-child('+$('#manager option').length+')').remove();
   $('#city').val('');
   $('#address').val('');
   $('#description').val('');
   $('.picture input[type="file"]').siblings('span').text('');
+  $('.gallery input[type="file"]').siblings('span').text('');
 }
 
 

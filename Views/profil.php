@@ -1,4 +1,18 @@
 
+<?php
+
+    if (isset($_SESSION['userHypnosId'])) {
+        if ($_SESSION['userHypnosRole'] == 'customer') {
+
+            require_once 'Functions/troqueChaine.php';
+
+            require_once 'Models/Reservation.php';
+
+            $reservationModel = new Reservation;
+            $reservations = $reservationModel->selectReservationByUserId($_SESSION['userHypnosId']);
+            
+?>
+
 <main>
     <div class="wrapper">
         <div class="info">
@@ -20,12 +34,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        if (!empty($reservations)) {
+                            foreach ($reservations as $reservation) {
+                    ?>
                     <tr>
-                        <td class="col1">TNom hôtel</td>
-                        <td class="col2">Nom suite</td>
-                        <td class="col3">Date</td>
+                        <td class="col1"><?=$reservation->name?></td>
+                        <td class="col2"><?=$reservation->title?></td>
+                        <td class="col3"><?=date('d-m-Y', strtotime($reservation->start_date)).'<br> aux <br>'.date('d-m-Y', strtotime($reservation->end_date))?></td>
                         <td class="col4"><button>Annuler</button></td>
                     </tr>
+                    <?php
+                            }  
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -34,7 +56,13 @@
 </main>
 
 
-
+<?php
+        } else {
+            header("location: index.php?page=error");
+        }
+    } else {
+        header("location: index.php?page=error");
+    }
 
 
 
