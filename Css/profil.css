@@ -52,12 +52,12 @@ th {
     font-weight: bold;
 }
 
-.col1, .col2, .col4 {
+.col1, .col2, .col3, .col5 {
     word-wrap: break-word;
     max-width: 80px;
 }
 
-.col3 {
+.col4 {
     word-wrap: break-word;
     max-width: 140px;
 }
@@ -108,11 +108,11 @@ td button {
         font-weight: bold;
     }
     
-    .col1, .col2, .col4 {
+    .col1, .col2, .col3, .col5 {
         width: 110px;
     }
     
-    .col3 {
+    .col4 {
         width: 220px;
     }
     

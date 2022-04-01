@@ -31,7 +31,7 @@ $(document).ready(function() {
         success:function(data){
           $('#suite').children().remove();
           for (let index = 0; index < data.length; index++) {
-            $('#suite').append($('<option>').val(data[index][0]).text(data[index][1]))
+            $('#suite').append($('<option>').val(data[index][0]).text(data[index][1]+" / "+(data[index][2]+"€")));
           }
           checkReservation();
         }

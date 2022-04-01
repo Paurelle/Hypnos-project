@@ -22,7 +22,8 @@
                 'id_establishment' => trim($_POST['establishment']),
                 'id_suite' => trim($_POST['suite']),
                 'startDate' => $_POST['startDate'],
-                'endDate' => $_POST['endDate']
+                'endDate' => $_POST['endDate'],
+                'price' => 0
             ];
 
             // Validate inputs
@@ -61,8 +62,14 @@
                 }
             }
 
+            // Calculate the total amount
+            $suite = $this->reservationModel->selectSuiteByIdAndEstablishmentById($data['id_suite'], $data['id_establishment']);
+            $reservationDays = (ceil((strtotime($data['endDate']) - strtotime($data['startDate'])) / 86400)+1);
+            $data['price'] = $reservationDays*$suite->price;
+                        
+            // Add reservation
             if($this->reservationModel->addReservation($data)) {
-                flash("reservation", "La réservation a bien etait ajouter", "form-message form-message-green");
+                flash("reservation", "La réservation a bien etait ajouter, cela vous fera ".$data['price']."€ pour ".$reservationDays." jours", "form-message form-message-green");
                 redirect("../index.php?page=reservation");
             }
             
@@ -105,6 +112,36 @@
             }
             
         }
+
+        public function deleteReservation() {
+            // Sanitize POST data
+            $_POST = filter_input_array(INPUT_POST);
+
+            // Init data
+            $data = [
+                'id_reservation' => trim($_POST['id_reservation']),
+                'id_user' => $_SESSION['userHypnosId']
+            ];
+
+            $reservation = $this->reservationModel->selectReservationByReservationAndUserId($data['id_reservation'], $data['id_user']);
+            if ($reservation) {
+              
+                $deleteLimite = strtotime($reservation->start_date."- 3 days");
+                $currentDate = time();
+
+                // Check if the user can delete his reservation before 3 days of his reservation
+                if ($currentDate < $deleteLimite) {
+                    // Delete reservation 
+                    if($this->reservationModel->deleteReservation($data['id_reservation'], $data['id_user'])) {
+                        echo json_encode(true);
+                    }
+                } else {
+                    echo json_encode("limite");
+                }
+            } else {
+                echo json_encode(false);
+            }
+        }
         
     }
 
@@ -118,6 +155,9 @@
                 break;
             case 'checkReservation':
                 $init->checkReservation();
+                break;
+            case 'delete':
+                $init->deleteReservation();
                 break;
             default:
                 redirect("../index.php");

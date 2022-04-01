@@ -342,7 +342,7 @@
             if ($rows) {
                 $suites = [];
                 foreach ($rows as $row) {
-                    array_push($suites, [$row->id_suite, $row->title]);
+                    array_push($suites, [$row->id_suite, $row->title, $row->price]);
                 }
                 echo json_encode($suites);
             }

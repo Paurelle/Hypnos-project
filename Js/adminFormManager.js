@@ -51,7 +51,7 @@ $('.deleteBtn').click(function() {
         if (data) {
           row.remove();
         } else {
-          alert('Vous devez retirer le manager de sont établissement avant de pouvoir le supprimer');
+          $('<div class="form-message form-message-red">Vous devez retirer le manager de sont établissement avant de pouvoir le supprimer</div>').insertAfter('h2');
         }
       }
       

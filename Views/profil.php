@@ -29,8 +29,9 @@
                     <tr>
                         <th class="col1">Hôtel</th>
                         <th class="col2">Suite</th>
-                        <th class="col3">Date de réservation</th>
-                        <th class="col4">Action</th>
+                        <th class="col3">Prix</th>
+                        <th class="col4">Date de réservation</th>
+                        <th class="col5">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,11 +39,12 @@
                         if (!empty($reservations)) {
                             foreach ($reservations as $reservation) {
                     ?>
-                    <tr>
+                    <tr id="<?=$reservation->id_reservation?>">
                         <td class="col1"><?=$reservation->name?></td>
                         <td class="col2"><?=$reservation->title?></td>
-                        <td class="col3"><?=date('d-m-Y', strtotime($reservation->start_date)).'<br> aux <br>'.date('d-m-Y', strtotime($reservation->end_date))?></td>
-                        <td class="col4"><button>Annuler</button></td>
+                        <td class="col3"><?=$reservation->price."€"?></td>
+                        <td class="col4"><?=date('d-m-Y', strtotime($reservation->start_date)).'<br> aux <br>'.date('d-m-Y', strtotime($reservation->end_date))?></td>
+                        <td class="col5"><button class="deleteBtn">Annuler</button></td>
                     </tr>
                     <?php
                             }  

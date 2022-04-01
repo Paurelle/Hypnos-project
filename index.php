@@ -66,6 +66,9 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 
 <?php elseif ($page == 'reservation') : ?>
     <script src="Js/formReservation.js"></script>
+
+<?php elseif ($page == 'profil') : ?>
+    <script src="Js/profil.js"></script>
     
 <?php elseif ($page == 'suite-info') : ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
