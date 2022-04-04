@@ -35,6 +35,8 @@
         
         <div class="suite">
             <?php
+            if ($suites) {
+            
                 foreach ($suites as $suite) {
 
             ?>
@@ -61,6 +63,7 @@
             </div>
             <?php
                 }
+            }
             ?>
             
         </div>

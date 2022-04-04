@@ -21,7 +21,11 @@
     <div class="wrapper">
         <div class="info">
             <h1>Manager interface</h1>
+            <?php if ($establishment) : ?>
             <p>Hôtel, <?=ucfirst($establishment->name)?></p>
+            <?php else : ?>
+            <p>Hôtel, non attribué</p>
+            <?php endif; ?>
             <hr>
         </div>
         
@@ -29,6 +33,8 @@
         <?php flash('registerSuite'); ?>
         
         <div class="suite">
+            
+            <?php if ($establishment) : ?>
             <button class="addBtn">Ajouter une suite</button>
         
             <?php
@@ -42,7 +48,7 @@
                     <?='<img src="data:image/jpeg;base64,' . base64_encode($allSuite->featured_img) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=suite-info&suite=<?=$allSuite->id_suite?>">
+                    <a href="index.php?page=suite-info&establishment=<?=$establishment->id_establishment?>&suite=<?=$allSuite->id_suite?>">
                     <h3><?=ucfirst($allSuite->title)?></h3>
                     </a>
                 </div>
@@ -62,6 +68,7 @@
                     }
                 }
             ?>
+            <?php endif; ?>
         </div>
     </div>
 
