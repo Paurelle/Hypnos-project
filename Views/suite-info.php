@@ -1,12 +1,16 @@
 <?php
     
     // Check if the establishment in the url is valid and not empty
-    if(isset($_GET['suite']) && !empty($_GET['suite'])){
+    if(isset($_GET['establishment']) && !empty($_GET['establishment']) && isset($_GET['suite']) && !empty($_GET['suite'])){
 
         require_once 'Controllers/Helpers/session_helper.php';
         require_once 'Functions/troqueChaine.php';
 
         require_once 'Models/Suite.php';
+        require_once 'Models/Establishment.php';
+
+        $establishmentModel = new Establishment;
+        $establishmentInfo = $establishmentModel->selectEstablishmentById($_GET['establishment']);
 
         $suiteModel = new Suite;
         $suiteInfo = $suiteModel->selectSuiteById($_GET['suite']);
@@ -14,7 +18,7 @@
         $suiteGallery = $suiteModel->selectSuiteGalleryByIdSuite($_GET['suite']);
 
         //Check if the suite was found
-        if ($suiteInfo) {
+        if ($establishmentInfo && $suiteInfo) {
     
 ?>
 
@@ -38,7 +42,12 @@
         <div class="info">
             <hr>
             <p><?=ucfirst($suiteInfo->description)?></p>
-            <p class="link">Réserver sur <a href="">Hypnos</a> ou sur <a href="">Booking</a></p>
+            <p class="link">
+                Réserver sur 
+                <a href="index.php?page=reservation&establishment=<?=$establishmentInfo->id_establishment?>&suite=<?=$suiteInfo->id_suite?>">Hypnos</a>
+                ou sur 
+                <a href="">Booking</a>
+            </p>
         </div>
     </div>
 

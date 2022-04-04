@@ -1,10 +1,16 @@
 
 $(document).ready(function() {
 
-  selectSuiteByEstablishment($("#establishment"))
+  let searchParams = new URLSearchParams(window.location.search)
+  searchParams.has('suite') 
+  let suite = searchParams.get('suite')
+
+  
+
+  selectSuiteByEstablishment($("#establishment").val(), true)
   
   $("#establishment").change(function() {
-    selectSuiteByEstablishment($(this))
+    selectSuiteByEstablishment($(this).val(), false)
   })
 
   $("#suite").change(function() {
@@ -19,8 +25,9 @@ $(document).ready(function() {
     checkReservation();
   })
 
-  function selectSuiteByEstablishment(id_establishment) {
-    var establishment = id_establishment.val()
+  function selectSuiteByEstablishment(id_establishment, get) {
+    let establishment = id_establishment
+    
     if (establishment != '') {
 
       $.ajax({
@@ -31,7 +38,11 @@ $(document).ready(function() {
         success:function(data){
           $('#suite').children().remove();
           for (let index = 0; index < data.length; index++) {
-            $('#suite').append($('<option>').val(data[index][0]).text(data[index][1]+" / "+(data[index][2]+"€")));
+            if (data[index][0] == suite && get) {
+              $('#suite').append($('<option selected>').val(data[index][0]).text(data[index][1]+" / "+(data[index][2]+"€")));
+            } else {
+              $('#suite').append($('<option>').val(data[index][0]).text(data[index][1]+" / "+(data[index][2]+"€")));
+            }
           }
           checkReservation();
         }

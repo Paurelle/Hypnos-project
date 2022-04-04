@@ -101,17 +101,17 @@ h2 {
     font-size: 16px;
 }
 
-.btn-card button {
-    width: 60px;
-    height: 28px;
+.btn-card a {
+    padding: 3px 4px;
     background: #222831;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     color: #ffffff;
 }
-.btn-card button:hover {
+.btn-card a:hover {
     background: #22283150;
+    text-decoration: none;
 }
 .btn-card button img{
     width: 14px;

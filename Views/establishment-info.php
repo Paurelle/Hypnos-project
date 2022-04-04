@@ -43,13 +43,13 @@
                     <?='<img src="data:image/jpeg;base64,' . base64_encode($suite->featured_img) . '" />';?>
                 </div>
                 <div class="title-card">
-                    <a href="index.php?page=suite-info&suite=<?=$suite->id_suite?>">
+                    <a href="index.php?page=suite-info&establishment=<?=$establishmentInfo->id_establishment?>&suite=<?=$suite->id_suite?>">
                        <h3><?=$suite->title?></h3>
                     </a>
                 </div>
                 <div class="btn-card">
                     <?php if (!isset($_SESSION['userHypnosRole']) || $_SESSION['userHypnosRole'] == 'customer') : ?>
-                    <button>Réserver</button>
+                    <a href="index.php?page=reservation&establishment=<?=$establishmentInfo->id_establishment?>&suite=<?=$suite->id_suite?>">Réserver</a>
                     <?php endif; ?>
                 </div>
                 <div class="info-card">

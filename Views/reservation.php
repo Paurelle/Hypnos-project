@@ -11,7 +11,13 @@
     $suiteModel = new Suite;
     $allsuites = $suiteModel->selectAllFromSuite();
 
+    $reservationGet = false;
 
+    if(isset($_GET['establishment']) && !empty($_GET['establishment']) && isset($_GET['suite']) && !empty($_GET['suite'])){
+        $establishmentInfo = $establishmentModel->selectEstablishmentById($_GET['establishment']);
+        $suiteInfo = $suiteModel->selectSuiteById($_GET['suite']);
+        $reservationGet = true;
+    }
     
 ?>
 
@@ -27,9 +33,16 @@
                 <option></option>
                 <?php
                     foreach ($allEstablishments as $Establishment) {
+                        if ($Establishment->id_establishment == $establishmentInfo->id_establishment) { 
+                            
                 ?>
-                <option value="<?=$Establishment->id_establishment?>"><?=$Establishment->name?></option>
+                <option value="<?=$Establishment->id_establishment?>" selected><?=$Establishment->name?></option>
                 <?php
+                        } else {
+                ?>   
+                <option value="<?=$Establishment->id_establishment?>"><?=$Establishment->name?></option>
+                <?php         
+                        }
                     }
                 ?>
             </select>
