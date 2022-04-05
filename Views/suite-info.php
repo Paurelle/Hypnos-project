@@ -46,7 +46,7 @@
                 Réserver sur 
                 <a href="index.php?page=reservation&establishment=<?=$establishmentInfo->id_establishment?>&suite=<?=$suiteInfo->id_suite?>">Hypnos</a>
                 ou sur 
-                <a href="">Booking</a>
+                <a href="<?=$suiteInfo->link?>">Booking</a>
             </p>
         </div>
     </div>

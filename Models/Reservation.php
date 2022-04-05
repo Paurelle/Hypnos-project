@@ -66,7 +66,8 @@ class Reservation {
             'SELECT id_reservation, name, title, reservations.price, start_date, end_date FROM reservations
             JOIN establishments ON reservations.id_establishment = establishments.id_establishment
             JOIN suites ON reservations.id_suite = suites.id_suite
-            WHERE reservations.id_user = :id_user'
+            WHERE reservations.id_user = :id_user
+            ORDER BY start_date DESC'
         );
 
         $this->db->bind(':id_user', $id_user);

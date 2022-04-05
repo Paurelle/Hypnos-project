@@ -52,7 +52,7 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 
 <!-- Import jQuery -->
 <script src="Js/jquery-3.6.0.min.js"></script>
-
+<script src="Js/headerScroll.js"></script>
 <?php if ($page == 'admin-establishment') : ?>
     <script src="Js/adminFormEstablishment.js"></script>
     <script src="Js/inputFile.js"></script>
