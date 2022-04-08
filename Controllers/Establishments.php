@@ -16,16 +16,13 @@
 
         public function addEstablishment() {
 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
-
             // Init data
             $data = [
-                'name' => trim($_POST['name']),
-                'manager' => trim($_POST['manager']),
-                'city' => trim($_POST['city']),
-                'address' => trim($_POST['address']),
-                'description' => trim($_POST['description']),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'manager' => htmlspecialchars(trim($_POST['manager'])),
+                'city' => htmlspecialchars(trim($_POST['city'])),
+                'address' => htmlspecialchars(trim($_POST['address'])),
+                'description' => htmlspecialchars(trim($_POST['description'])),
                 'img' => $_FILES['img']
             ];
 
@@ -105,17 +102,15 @@
         }
 
         public function modifyEstablishment() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id' => trim($_POST['id_establishment']),
-                'name' => trim($_POST['name']),
-                'manager' => trim($_POST['manager']),
-                'city' => trim($_POST['city']),
-                'address' => trim($_POST['address']),
-                'description' => trim($_POST['description']),
+                'id' => htmlspecialchars(trim($_POST['id_establishment'])),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'manager' => htmlspecialchars(trim($_POST['manager'])),
+                'city' => htmlspecialchars(trim($_POST['city'])),
+                'address' => htmlspecialchars(trim($_POST['address'])),
+                'description' => htmlspecialchars(trim($_POST['description'])),
                 'img' => $_FILES['img']
             ];
 
@@ -206,12 +201,10 @@
         }
 
         public function deleteEstablishment() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id' => trim($_POST['id'])
+                'id' => htmlspecialchars(trim($_POST['id']))
             ];
 
             // Delete establishment by id
@@ -226,7 +219,7 @@
 
             // Init data
             $data = [
-                'id' => trim($_POST['id'])
+                'id' => htmlspecialchars(trim($_POST['id']))
             ];
 
             // Select establishment by id

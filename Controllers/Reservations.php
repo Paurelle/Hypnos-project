@@ -13,14 +13,11 @@
 
         public function addReservation() {
 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
-
             // Init data
             $data = [
                 'id_user' => $_SESSION['userHypnosId'],
-                'id_establishment' => trim($_POST['establishment']),
-                'id_suite' => trim($_POST['suite']),
+                'id_establishment' => htmlspecialchars(trim($_POST['establishment'])),
+                'id_suite' => htmlspecialchars(trim($_POST['suite'])),
                 'startDate' => $_POST['startDate'],
                 'endDate' => $_POST['endDate'],
                 'price' => 0
@@ -76,13 +73,11 @@
         }
 
         public function checkReservation() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id_establishment' => trim($_POST['id_establishment']),
-                'id_suite' => trim($_POST['id_suite']),
+                'id_establishment' => htmlspecialchars(trim($_POST['id_establishment'])),
+                'id_suite' => htmlspecialchars(trim($_POST['id_suite'])),
                 'startDate' => strtotime($_POST['startDate']),
                 'endDate' => strtotime($_POST['endDate'])
             ];
@@ -114,12 +109,10 @@
         }
 
         public function deleteReservation() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id_reservation' => trim($_POST['id_reservation']),
+                'id_reservation' => htmlspecialchars(trim($_POST['id_reservation'])),
                 'id_user' => $_SESSION['userHypnosId']
             ];
 

@@ -15,13 +15,11 @@
         }
 
         public function login() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
     
             // Init data
             $data=[
-                'email' => trim($_POST['email']),
-                'pwd' => trim($_POST['pwd'])
+                'email' => htmlspecialchars(trim($_POST['email'])),
+                'pwd' => htmlspecialchars(trim($_POST['pwd']))
             ];
             
             if(empty($data['email']) || empty($data['pwd'])){
@@ -67,16 +65,13 @@
 
         public function register(){
 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
-
             // Init data
             $data = [
-                'name' => trim($_POST['name']),
-                'lastname' => trim($_POST['lastname']),
-                'email' => trim($_POST['email']),
-                'pwd' => trim($_POST['pwd']),
-                'cPwd' => trim($_POST['cPwd']),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'lastname' => htmlspecialchars(trim($_POST['lastname'])),
+                'email' => htmlspecialchars(trim($_POST['email'])),
+                'pwd' => htmlspecialchars(trim($_POST['pwd'])),
+                'cPwd' => htmlspecialchars(trim($_POST['cPwd'])),
             ];
 
             // Validate inputs
@@ -133,16 +128,13 @@
             if (isset($_SESSION['userHypnosId'])) {
                 if ($_SESSION['userHypnosRole'] == 'admin') {
 
-                    // Sanitize POST data
-                    $_POST = filter_input_array(INPUT_POST);
-
                     // Init data
                     $data = [
-                        'name' => trim($_POST['name']),
-                        'lastname' => trim($_POST['lastname']),
-                        'email' => trim($_POST['email']),
-                        'pwd' => trim($_POST['pwd']),
-                        'cPwd' => trim($_POST['cPwd']),
+                        'name' => htmlspecialchars(trim($_POST['name'])),
+                        'lastname' => htmlspecialchars(trim($_POST['lastname'])),
+                        'email' => htmlspecialchars(trim($_POST['email'])),
+                        'pwd' => htmlspecialchars(trim($_POST['pwd'])),
+                        'cPwd' => htmlspecialchars(trim($_POST['cPwd'])),
                     ];
 
                     // Validate inputs
@@ -197,12 +189,10 @@
         }
 
         public function delete() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'email' => trim($_POST['email'])
+                'email' => htmlspecialchars(trim($_POST['email']))
             ];
 
             $user = $this->userModel->findUserByEmail($data['email']);

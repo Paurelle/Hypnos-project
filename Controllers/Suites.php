@@ -16,16 +16,13 @@
 
         public function addSuite() {
 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
-
             // Init data
             $data = [
                 'id_establishment' => trim($_POST['id_establishment']),
-                'name' => trim($_POST['name']),
-                'price' => trim($_POST['price']),
-                'link' => trim($_POST['link']),
-                'description' => trim($_POST['description']),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'price' => htmlspecialchars(trim($_POST['price'])),
+                'link' => htmlspecialchars(trim($_POST['link'])),
+                'description' => htmlspecialchars(trim($_POST['description'])),
                 'featuredImg' => $_FILES['featuredImg'],
                 'gallery' => $_FILES['gallery']
             ];
@@ -149,17 +146,14 @@
         }
 
         public function modifySuite() {
-            
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id_suite' => trim($_POST['id_suite']),
-                'name' => trim($_POST['name']),
-                'price' => trim($_POST['price']),
-                'link' => trim($_POST['link']),
-                'description' => trim($_POST['description']),
+                'id_suite' => htmlspecialchars(trim($_POST['id_suite'])),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'price' => htmlspecialchars(trim($_POST['price'])),
+                'link' => htmlspecialchars(trim($_POST['link'])),
+                'description' => htmlspecialchars(trim($_POST['description'])),
                 'featuredImg' => $_FILES['featuredImg'],
                 'gallery' => $_FILES['gallery']
             ];
@@ -290,8 +284,6 @@
         }
 
         public function deleteSuite() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
@@ -310,7 +302,7 @@
 
             // Init data
             $data = [
-                'id' => trim($_POST['id'])
+                'id' => htmlspecialchars(trim($_POST['id']))
             ];
             // Select suite by id
             $rowSuite = $this->suiteModel->selectSuiteById($data['id']);
@@ -330,12 +322,10 @@
         }
 
         public function selectSuite() {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
 
             // Init data
             $data = [
-                'id_establishment' => trim($_POST['id_establishment'])
+                'id_establishment' => htmlspecialchars(trim($_POST['id_establishment']))
             ];
 
             $rows = $this->suiteModel->selectAllFromSuiteByIdEstablishment($data['id_establishment']);

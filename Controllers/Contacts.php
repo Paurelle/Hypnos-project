@@ -12,17 +12,15 @@
         }
 
         public function newMessage() {
-            //Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST);
     
             //Init data
             $data = [
-                'name' => trim($_POST['name']),
-                'lastname' => trim($_POST['lastname']),
-                'email' => trim($_POST['email']),
-                'establishment' => trim($_POST['establishment']),
-                'subject' => trim($_POST['subject']),
-                'description' => trim($_POST['description'])
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'lastname' => htmlspecialchars(trim($_POST['lastname'])),
+                'email' => htmlspecialchars(trim($_POST['email'])),
+                'establishment' => htmlspecialchars(trim($_POST['establishment'])),
+                'subject' => htmlspecialchars(trim($_POST['subject'])),
+                'description' => htmlspecialchars(trim($_POST['description']))
             ];
 
             // Validate inputs
@@ -64,7 +62,7 @@
 
             //Register new message
             if($this->contactModel->addNewMessage($data)){
-                flash("contact", "Demmande envoyer");
+                flash("contact", "Demmande envoyer", "form-message form-message-green");
                 redirect("../index.php?page=contact");
             }else{
                 flash("contact", "Une erreur est survenue");
