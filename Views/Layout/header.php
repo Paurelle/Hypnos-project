@@ -20,7 +20,7 @@
                 <?php elseif ($_SESSION['userHypnosRole'] == 'customer'): ?>
                     <li class="<?= ($page=="catalog")?"active" : ""; ?>"><a href="index.php?page=catalog">Catalogue</a></li>
                     <li class="<?= ($page=="reservation")?"active" : ""; ?>"><a href="index.php?page=reservation">Réservation</a></li>
-                    <li class="<?= ($page=="profile")?"active" : ""; ?>"><a href="index.php?page=profil">Profile</a></li>
+                    <li class="<?= ($page=="profil")?"active" : ""; ?>"><a href="index.php?page=profil">Profile</a></li>
                     <li class="<?= ($page=="contact")?"active" : ""; ?>"><a href="index.php?page=contact">Nous contactez</a></li>
                     <li><a href="Controllers/Users.php?q=logout">Logout</a></li>
 

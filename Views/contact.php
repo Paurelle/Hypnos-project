@@ -18,14 +18,16 @@
         <form action="Controllers/Contacts.php" method="POST">
             <input type="hidden" name="type" value="contact">
 
+            
             <label for="name">Nom</label>
-            <input type="text" id="name" class="input-form" name="name">
+            <input type="text" id="name" class="input-form" name="name" value="<?= isset($_SESSION['userHypnosId']) ? $_SESSION['userHypnosName'] : '' ?>">
 
             <label for="lastname">Prénom</label>
-            <input type="text" id="lastname" class="input-form" name="lastname">
+            <input type="text" id="lastname" class="input-form" name="lastname" value="<?= isset($_SESSION['userHypnosId']) ? $_SESSION['userHypnosLastname'] : '' ?>">
             
             <label for="email">Adresse mail</label>
-            <input type="text" id="email" class="input-form" name="email">
+            <input type="text" id="email" class="input-form" name="email" value="<?= (isset($_SESSION['userHypnosId'])) ? $_SESSION['userHypnosEmail'] : '' ?>">
+       
 
             <label for="establishment">Choisissez l’établissement</label>
             <select name="establishment" id="establishment" class="input-form">

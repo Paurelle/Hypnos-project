@@ -44,6 +44,12 @@ label {
     cursor: pointer;
 }
 
+.button-submit:hover {
+    background: #22283150;
+    text-decoration: none;
+    border: none;
+}
+
 @media screen and (min-width:992px){
 
     .wrapper {

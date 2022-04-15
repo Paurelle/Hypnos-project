@@ -43,6 +43,11 @@ label {
     background: #222831;
     cursor: pointer;
 }
+.button-submit:hover {
+    background: #22283150;
+    text-decoration: none;
+    border: none;
+}
 
 .form-register {
     margin-top: 15px;
