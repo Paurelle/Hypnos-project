@@ -33,8 +33,10 @@
         </div>
         <div class="carousel owl-carousel">
             <?php
-                foreach ($suiteGallery as $picture) {
-                    echo '<div class="card"><img src="data:image/jpeg;base64,' . base64_encode( $picture->suite_picture ) . '" /></div>';
+                if ($suiteGallery) {
+                    foreach ($suiteGallery as $picture) {
+                        echo '<div class="card"><img src="data:image/jpeg;base64,' . base64_encode( $picture->suite_picture ) . '" /></div>';
+                    }
                 }
             ?>
             

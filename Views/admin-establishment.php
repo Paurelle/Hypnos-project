@@ -29,7 +29,8 @@
             <button class="addBtn">Ajouter un établissement</button>
             
             <?php
-                foreach ($allEstablishments as $allEstablishment) {
+                if ($allEstablishments) {
+                    foreach ($allEstablishments as $allEstablishment) {
             ?>
             <div id="<?=$allEstablishment->id_establishment?>" class="content-card">
                 <div class="img-card">
@@ -52,6 +53,7 @@
                 </div>
             </div>
             <?php
+                    } 
                 }
             ?>
         </div>

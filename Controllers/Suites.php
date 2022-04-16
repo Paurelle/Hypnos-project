@@ -60,6 +60,7 @@
                 redirect("../index.php?page=manager-suite");
             }
 
+            
             // Check if the image has been sent correctly and if there is no error
             if (isset($data['featuredImg']) AND $data['featuredImg']['error'] == 0) {
                 // Check if the file is not too big
@@ -67,7 +68,7 @@
                         // Check if the extension is allowed
                         $infosfichier = pathinfo($data['featuredImg']['name']);
                         $extension_upload = $infosfichier['extension'];
-                        $extensions_autorisees = array('png');
+                        $extensions_autorisees = array('png', 'jpg');
                         if (in_array($extension_upload, $extensions_autorisees)) {
                             // Init img data
                             $data['imgName'] = $data['featuredImg']['name'];
@@ -75,7 +76,7 @@
                             // register establishment
                             if($this->suiteModel->registerSuite($data)) {
                                 if ($this->addSuiteGallery($data, $this->suiteModel->selectIdSuiteFromLastSuite()->id_suite)) {
-                                    flash("registerSuite", "L'établissement a bien etait créer", "form-message form-message-green");
+                                    flash("registerSuite", "La suite a bien etait créer", "form-message form-message-green");
                                     redirect("../index.php?page=manager-suite");
                                 }
                             }else{
@@ -106,7 +107,6 @@
             ]);
             for ($i=0; $i < count($data['gallery']['name']); $i++) { 
                 
-                var_dump($data['gallery']['name'][$i]);
                 // Check if there is no error
                 if ($data['gallery']['error'][$i] == 0) {
                     // Check if the file is not too big
@@ -114,7 +114,7 @@
                             // Check if the extension is allowed
                             $infosfichier = pathinfo($data['gallery']['name'][$i]);
                             $extension_upload = $infosfichier['extension'];
-                            $extensions_autorisees = array('png');
+                            $extensions_autorisees = array('png', 'jpg');
                             if (in_array($extension_upload, $extensions_autorisees)) {
                                 // Init img data
                                 array_push($img, [
@@ -192,7 +192,7 @@
                         // Check if the extension is allowed
                         $infosfichier = pathinfo($data['featuredImg']['name']);
                         $extension_upload = $infosfichier['extension'];
-                        $extensions_autorisees = array('png');
+                        $extensions_autorisees = array('png', 'jpg');
                         if (in_array($extension_upload, $extensions_autorisees)) {
                             // Init img data
                             $data['imgName'] = $data['featuredImg']['name'];
@@ -200,7 +200,7 @@
                             // register establishment
                             if($this->suiteModel->modifySuite($data)) {
                                 if ($this->modifySuiteGallery($data)) {
-                                    flash("registerSuite", "L'établissement a bien etait créer", "form-message form-message-green");
+                                    flash("registerSuite", "La suite a bien etait modifier", "form-message form-message-green");
                                     redirect("../index.php?page=manager-suite");
                                 }
                             }else{
@@ -226,7 +226,7 @@
                 
                 // modify establishment
                 if($this->suiteModel->modifySuite($data)) {
-                    flash("registerSuite", "L'établissement a bien etait modifier", "form-message form-message-green");
+                    flash("registerSuite", "La suite a bien etait modifier", "form-message form-message-green");
                     redirect("../index.php?page=manager-suite");
                 }else{
                     flash("registerSuite", "Une erreur est survenue");
@@ -243,7 +243,6 @@
             ]);
             for ($i=0; $i < count($data['gallery']['name']); $i++) { 
                 
-                var_dump($data['gallery']['name'][$i]);
                 // Check if there is no error
                 if ($data['gallery']['error'][$i] == 0) {
                     // Check if the file is not too big
@@ -251,7 +250,7 @@
                             // Check if the extension is allowed
                             $infosfichier = pathinfo($data['gallery']['name'][$i]);
                             $extension_upload = $infosfichier['extension'];
-                            $extensions_autorisees = array('png');
+                            $extensions_autorisees = array('png', 'jpg');
                             if (in_array($extension_upload, $extensions_autorisees)) {
                                 // Init img data
                                 array_push($img, [

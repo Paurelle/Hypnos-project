@@ -18,7 +18,8 @@
         <div class="catalog">
 
         <?php
-            foreach ($allEstablishments as $allEstablishment) {
+            if ( $allEstablishments) {
+                foreach ($allEstablishments as $allEstablishment) {
         ?>
             <div class="content-card">
                 <div class="img-card">
@@ -37,6 +38,7 @@
                 </div>
             </div>
         <?php
+                }
             }
         ?>
         </div>

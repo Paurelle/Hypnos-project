@@ -28,7 +28,7 @@ $('.modifyBtn').click(function() {
       $('#city').val(data['city']);
       $('#address').val(data['address']);
       $('#description').val(data['description']);
-      $('.establishment-picture span').text(data['img_name']);
+      $('.picture span').text(data['img_name']);
     }
   })
 })
