@@ -25,9 +25,9 @@ $('.modifyBtn').click(function() {
     success:function(data){
       $('#id_suite').val(data['id_suite']);
       $('#id_establishment').val(data['id_establishment']);
-      $('#name').val(decodeEntities(data['title']));
+      $('#name').val(data['title']);
       $('#price').val(data['price']);
-      $('#description').val(decodeEntities(data['description']));
+      $('#description').val(data['description']);
       $('.picture span').text(data['img_name']);
       $('.gallery span').text(data['img_gallery_name']+' fichiers');
       $('#link').val(data['link']);
@@ -86,8 +86,3 @@ function resetValue() {
 
 
 
-function decodeEntities(encodedString) {
-  var textArea = document.createElement('textarea');
-  textArea.innerHTML = encodedString;
-  return textArea.value;
-}
