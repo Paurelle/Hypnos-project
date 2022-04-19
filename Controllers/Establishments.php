@@ -60,11 +60,6 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!(strlen($data['description']) <= 1024)){
-                flash("contact", "Message trop long");
-                redirect("../index.php?page=admin-establishment");
-            }
-
             // Check if the image has been sent correctly and if there is no error
             if (isset($data['img']) AND $data['img']['error'] == 0) {
                 // Check if the file is not too big
@@ -145,11 +140,6 @@
 
             if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
                 flash("registerEstablishment", "Address invalide");
-                redirect("../index.php?page=admin-establishment");
-            }
-
-            if(!(strlen($data['description']) <= 1024)){
-                flash("contact", "Message trop long");
                 redirect("../index.php?page=admin-establishment");
             }
 

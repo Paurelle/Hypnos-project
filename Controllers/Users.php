@@ -102,7 +102,7 @@
             }
 
             if(strlen($data['pwd']) < 6){
-                flash("register", "Mot de passe invalide (minimum 7 caractères)");
+                flash("register", "Mot de passe invalide (mot de passe trop court");
                 redirect("../index.php?page=register");
             } else if($data['pwd'] !== $data['cPwd']){
                 flash("register", "Les mots de passe ne correspondent pas");
