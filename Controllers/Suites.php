@@ -39,7 +39,7 @@
                 redirect("../index.php?page=manager-suite");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerSuite", "Nom invalide");
                 redirect("../index.php?page=manager-suite");
             }
@@ -170,7 +170,7 @@
                 redirect("../index.php?page=manager-suite");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerSuite", "Nom invalide");
                 redirect("../index.php?page=manager-suite");
             }

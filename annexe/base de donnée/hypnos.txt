@@ -6,7 +6,7 @@ CREATE TABLE users
     role VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE establishments
 (
     id_establishment INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -18,12 +18,12 @@ CREATE TABLE establishments
     establishment_picture_name VARCHAR(100) NOT NULL,
     establishment_picture MEDIUMBLOB NOT NULL,   
     FOREIGN KEY (id_user) REFERENCES users(id_user)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE contact_subjects
 (
     id_subject INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     subject VARCHAR(255) NOT NULL
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE contacts
 (
     id_contact INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE contacts
     message TEXT NOT NULL,
     FOREIGN KEY (id_subject) REFERENCES contact_subjects(id_subject),
     FOREIGN KEY (id_establishment) REFERENCES establishments(id_establishment) ON DELETE CASCADE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE suites
 (
@@ -48,7 +48,7 @@ CREATE TABLE suites
     featured_img MEDIUMBLOB NOT NULL,
     link VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_establishment) REFERENCES establishments(id_establishment) ON DELETE CASCADE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE suite_pictures
 (
     id_suite_picture INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE suite_pictures
     suite_picture_name VARCHAR(100) NOT NULL,
     suite_picture MEDIUMBLOB NOT NULL,
     FOREIGN KEY (id_suite) REFERENCES suites(id_suite) ON DELETE CASCADE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE reservations
 (
@@ -70,10 +70,15 @@ CREATE TABLE reservations
     FOREIGN KEY (id_user) REFERENCES users(id_user),
     FOREIGN KEY (id_establishment) REFERENCES establishments(id_establishment) ON DELETE CASCADE,
     FOREIGN KEY (id_suite) REFERENCES suites(id_suite)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `contact_subjects` (`id_subject`, `subject`) VALUES
 (1, 'Je souhaite poser une réclamation'),
 (2, 'Je souhaite commander un service supplémentaire'),
 (3, 'Je souhaite en savoir plus sur une suite'),
 (4, 'J’ai un souci avec cette application');
+
+INSERT INTO `users` (`id_user`, `name`, `lastname`, `role`, `email`, `password`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '$2y$10$W.j0LDotsI7KW7/NdO0eDeaPRr/H8M1bO15Z/bQ0cwBDT64tIjOH6'),
+(11, 'doe', 'john', 'customer', 'john.doe@gmail.com', '$2y$10$WIiIvdx5gUDbJk0ido.uTOfaujkvhIDLxnTFQHvl8JElu8dAFzFKW'),
+(21, 'richard', 'benoit', 'manager', 'richard@gmail.com', '$2y$10$n5VeC71CoHIeCsE/6xvF6erwQKZkm61pSEE3f6G8ub1qo9It0NE16');

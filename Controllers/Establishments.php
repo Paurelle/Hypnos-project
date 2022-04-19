@@ -33,7 +33,7 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerEstablishment", "Nom invalide");
                 redirect("../index.php?page=admin-establishment");
             }
@@ -50,13 +50,13 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
                 flash("registerEstablishment", "Ville invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
-                flash("registerEstablishment", "address invalide");
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
+                flash("registerEstablishment", "Address invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
@@ -121,7 +121,7 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerEstablishment", "Nom invalide");
                 redirect("../index.php?page=admin-establishment");
             }
@@ -138,13 +138,13 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
                 flash("registerEstablishment", "Ville invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
-                flash("registerEstablishment", "Ville invalide");
+            if(!preg_match("/^[ a-zA-Z,.+!?\"'`:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
+                flash("registerEstablishment", "Address invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
