@@ -16,10 +16,10 @@
 
 class Database {
     // Link with bdd
-    private $host = 'eu-cdbr-west-02.cleardb.net';
-    private $user = 'b710876268dbf7';
-    private $pass = '12a46176';
-    private $dbname = 'heroku_1ac3bcdc3fad424';
+    private $host = 'localhost';
+    private $user = 'root';
+    private $pass = '';
+    private $dbname = 'hypnos';
     // Will be the PDO object
     private $dbh;
     private $stmt;

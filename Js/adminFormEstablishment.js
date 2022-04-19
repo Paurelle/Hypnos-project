@@ -21,13 +21,14 @@ $('.modifyBtn').click(function() {
     dataType: "json",
     data:{type: 'infoEstablishment', id: id_establishment},
     success:function(data){
+      console.log(data);
       $('#id').val(data['id'])
       $('#name').val(data['name']);
       $('#manager').append('<option value="'+data['id_user']+'">'+data['user_name']+'</option>');
       $('#manager option[value="'+data['id_user']+'"]').prop('selected', true);
-      $('#city').val(data['city']);
-      $('#address').val(data['address']);
-      $('#description').val(data['description']);
+      $('#city').val(decodeEntities(data['city']));
+      $('#address').val(decodeEntities(data['address']));
+      $('#description').val(decodeEntities(data['description']));
       $('.picture span').text(data['img_name']);
     }
   })
@@ -81,3 +82,8 @@ function resetValue() {
 
 
 
+function decodeEntities(encodedString) {
+  var textArea = document.createElement('textarea');
+  textArea.innerHTML = encodedString;
+  return textArea.value;
+}

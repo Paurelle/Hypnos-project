@@ -1,9 +1,0 @@
-admin@gmail.com
-@596022
-
-UPDATE users
-SET role = 'admin'
-WHERE email = 'admin@gmail.com'
-
-john.doe@gmail.com
-john2542@

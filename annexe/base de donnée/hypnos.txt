@@ -77,8 +77,3 @@ INSERT INTO `contact_subjects` (`id_subject`, `subject`) VALUES
 (2, 'Je souhaite commander un service supplémentaire'),
 (3, 'Je souhaite en savoir plus sur une suite'),
 (4, 'J’ai un souci avec cette application');
-
-INSERT INTO `users` (`id_user`, `name`, `lastname`, `role`, `email`, `password`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin@gmail.com', '$2y$10$W.j0LDotsI7KW7/NdO0eDeaPRr/H8M1bO15Z/bQ0cwBDT64tIjOH6'),
-(11, 'doe', 'john', 'customer', 'john.doe@gmail.com', '$2y$10$WIiIvdx5gUDbJk0ido.uTOfaujkvhIDLxnTFQHvl8JElu8dAFzFKW'),
-(21, 'richard', 'benoit', 'manager', 'richard@gmail.com', '$2y$10$n5VeC71CoHIeCsE/6xvF6erwQKZkm61pSEE3f6G8ub1qo9It0NE16');
