@@ -81,12 +81,12 @@
                 redirect("../index.php?page=register");
             }
 
-            if(!preg_match("/^[a-zA-Z]*$/", $data['name'])){
+            if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("register", "Nom invalide");
                 redirect("../index.php?page=register");
             }
 
-            if(!preg_match("/^[a-zA-Z]*$/", $data['lastname'])){
+            if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['lastname'])){
                 flash("register", "Prénom invalide");
                 redirect("../index.php?page=register");
             }
@@ -144,12 +144,12 @@
                         redirect("../index.php?page=admin-manager");
                     }
 
-                    if(!preg_match("/^[a-zA-Z]*$/", $data['name'])){
+                    if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                         flash("registerManager", "Nom invalide");
                         redirect("../index.php?page=admin-manager");
                     }
 
-                    if(!preg_match("/^[a-zA-Z]*$/", $data['lastname'])){
+                    if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['lastname'])){
                         flash("registerManager", "Prénom invalide");
                         redirect("../index.php?page=admin-manager");
                     }

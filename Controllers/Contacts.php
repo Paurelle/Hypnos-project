@@ -30,12 +30,12 @@
                 redirect("../index.php?page=contact");
             }
 
-            if(!preg_match("/^[a-zA-Z]*$/", $data['name'])){
+            if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("contact", "Nom invalide");
                 redirect("../index.php?page=contact");
             }
 
-            if(!preg_match("/^[a-zA-Z]*$/", $data['lastname'])){
+            if(!preg_match("/^[a-zA-Z-À-ÖØ-öø-ÿ-]*$/", $data['lastname'])){
                 flash("contact", "Prénom invalide");
                 redirect("../index.php?page=contact");
             }

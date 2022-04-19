@@ -33,7 +33,7 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerEstablishment", "Nom invalide");
                 redirect("../index.php?page=admin-establishment");
             }
@@ -50,13 +50,13 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-]*$/", $data['city'])){
+            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
                 flash("registerEstablishment", "Ville invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-]*$/", $data['address'])){
-                flash("registerEstablishment", "Ville invalide");
+            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
+                flash("registerEstablishment", "address invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
@@ -72,7 +72,7 @@
                         // Check if the extension is allowed
                         $infosfichier = pathinfo($data['img']['name']);
                         $extension_upload = $infosfichier['extension'];
-                        $extensions_autorisees = array('png');
+                        $extensions_autorisees = array('png', 'jpg');
                         if (in_array($extension_upload, $extensions_autorisees)) {
                             // Init img data
                             $data['imgName'] = $data['img']['name'];
@@ -121,7 +121,7 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-]*$/", $data['name'])){
+            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['name'])){
                 flash("registerEstablishment", "Nom invalide");
                 redirect("../index.php?page=admin-establishment");
             }
@@ -138,12 +138,12 @@
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z,.+!:;()-]*$/", $data['city'])){
+            if(!preg_match("/^[ a-zA-Z,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['city'])){
                 flash("registerEstablishment", "Ville invalide");
                 redirect("../index.php?page=admin-establishment");
             }
 
-            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-]*$/", $data['address'])){
+            if(!preg_match("/^[ a-zA-Z0-9,.+!:;()-À-ÖØ-öø-ÿ-]*$/", $data['address'])){
                 flash("registerEstablishment", "Ville invalide");
                 redirect("../index.php?page=admin-establishment");
             }
@@ -160,7 +160,7 @@
                         // Check if the extension is allowed
                         $infosfichier = pathinfo($_FILES['img']['name']);
                         $extension_upload = $infosfichier['extension'];
-                        $extensions_autorisees = array('png');
+                        $extensions_autorisees = array('png', 'jpg');
                         if (in_array($extension_upload, $extensions_autorisees)) {
                             // Init img data
                             $data['imgName'] = $data['img']['name'];
