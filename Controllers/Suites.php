@@ -55,10 +55,7 @@
                 redirect("../index.php?page=manager-suite");
             }
 
-            if(!(strlen($data['description']) <= 1024)){
-                flash("contact", "Message trop long");
-                redirect("../index.php?page=manager-suite");
-            }
+            
 
             
             // Check if the image has been sent correctly and if there is no error
@@ -180,10 +177,6 @@
                 redirect("../index.php?page=manager-suite");
             }
 
-            if(!(strlen($data['description']) <= 1024)){
-                flash("contact", "Message trop long");
-                redirect("../index.php?page=manager-suite");
-            }
 
             // Check if the image has been sent correctly and if there is no error
             if (isset($data['featuredImg']) AND $data['featuredImg']['error'] == 0) {

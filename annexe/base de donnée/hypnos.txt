@@ -46,7 +46,7 @@ CREATE TABLE suites
     description TEXT NOT NULL,
     featured_img_name VARCHAR(100) NOT NULL,
     featured_img MEDIUMBLOB NOT NULL,
-    link VARCHAR(255) NOT NULL,
+    link TEXT NOT NULL,
     FOREIGN KEY (id_establishment) REFERENCES establishments(id_establishment) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE suite_pictures
