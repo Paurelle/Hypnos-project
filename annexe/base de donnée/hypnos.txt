@@ -72,8 +72,8 @@ CREATE TABLE reservations
     FOREIGN KEY (id_suite) REFERENCES suites(id_suite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `contact_subjects` (`id_subject`, `subject`) VALUES
-(1, 'Je souhaite poser une réclamation'),
-(2, 'Je souhaite commander un service supplémentaire'),
-(3, 'Je souhaite en savoir plus sur une suite'),
-(4, 'J’ai un souci avec cette application');
+INSERT INTO `contact_subjects` (`subject`) VALUES
+('Je souhaite poser une réclamation'),
+('Je souhaite commander un service supplémentaire'),
+('Je souhaite en savoir plus sur une suite'),
+('J’ai un souci avec cette application');

@@ -1,25 +1,11 @@
 <?php
 
-/* heroku
-["host"] = "eu-cdbr-west-02.cleardb.net"; //provide hostname
-["user"] = "b710876268dbf7"; //user name for your remote server
-["password"] = "12a46176"; //password
-["db name"] = 'heroku_1ac3bcdc3fad424'
-*/
-
-/* local 
-["host"] = 'localhost'
-["user"] = 'root'
-["password"] = ''
-["db name"] = 'hypnos'
-*/
-
 class Database {
     // Link with bdd
-    private $host = 'eu-cdbr-west-02.cleardb.net';
-    private $user = 'b710876268dbf7';
-    private $pass = '12a46176';
-    private $dbname = 'heroku_1ac3bcdc3fad424';
+    private $host = getenv('HOST');
+    private $user = getenv('USER');
+    private $pass = getenv('PASS');
+    private $dbname = getenv('NAME');
     // Will be the PDO object
     private $dbh;
     private $stmt;
