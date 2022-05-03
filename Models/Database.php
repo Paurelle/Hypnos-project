@@ -2,16 +2,20 @@
 
 class Database {
     // Link with bdd
-    private $host = getenv('HOST');
-    private $user = getenv('USER');
-    private $pass = getenv('PASS');
-    private $dbname = getenv('NAME');
+    private $host;
+    private $user;
+    private $pass;
+    private $dbname;
     // Will be the PDO object
     private $dbh;
     private $stmt;
     private $error;
 
     public function __construct(){
+        $this->host = getenv('BDD_HOST');
+        $this->user = getenv('BDD_USER');
+        $this->pass = getenv('BDD_PASS');
+        $this->dbname = getenv('BDD_NAME');
         // Set DNS
         $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname;
         $options = array(
